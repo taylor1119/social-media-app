@@ -1,5 +1,5 @@
 {
-	"name": "@react-express-ts-template/client",
+	"name": "@social-media-app/client",
 	"version": "0.1.0",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.4",

@@ -1,5 +1,5 @@
 {
-	"name": "@react-express-ts-template/server",
+	"name": "@social-media-app/server",
 	"version": "0.1.0",
 	"main": "dist/index.js",
 	"author": "Baatchia Riyadh",
