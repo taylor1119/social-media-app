@@ -1,20 +1,17 @@
-import express from 'express';
-import helmet from 'helmet';
-import path from 'path';
-const app = express();
-const port = 4000;
+import db from './config/db';
+import { IS_PROD, PORT } from './config/secrets';
+import app from './app';
 
-app.use(helmet({ contentSecurityPolicy: false }));
+const main = async () => {
+	await db();
 
-app.get('/api', (req, res) => {
-	res.send('Hello World!');
-});
+	const serverLogMsg = IS_PROD
+		? `Server 🚀 At Port: ${PORT} `
+		: `Server 🚀 At: http://localhost:${PORT} `;
 
-app.use(express.static(path.join(__dirname, '../../client/build')));
-app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
-});
+	app.listen(PORT, () => {
+		console.log(serverLogMsg);
+	});
+};
 
-app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
-});
+main();
