@@ -1,19 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/packages/cspell-types/cspell.schema.json",
-	"ignoreWords": [
-		"baatchia",
-		"browserslist"
-	],
-	"ignorePaths": [
-		"node_modules",
-		"dist",
-		"build",
-		"coverage"
-	],
-	"words": [
-		"EBADCSRFTOKEN",
-		"middlewares",
-		"unfollow",
-		"unfollowed"
-	]
+	"ignoreWords": ["baatchia", "browserslist"],
+	"ignorePaths": ["node_modules", "dist", "build", "coverage", "thunder-tests"],
+	"words": ["EBADCSRFTOKEN", "middlewares", "unfollow", "unfollowed"]
 }

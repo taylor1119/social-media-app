@@ -5,7 +5,8 @@ import morgan from 'morgan';
 import path from 'path';
 import { csrfProtection, handlePassedError } from './common/middlewares';
 import { COOKIE_SECRET } from './config/secrets';
-import router from './USER/router';
+import postRouter from './POST/router';
+import userRouter from './USER/router';
 
 const app = express();
 
@@ -18,8 +19,9 @@ app.get('/api', (req, res) => {
 	res.send('Hello World!');
 });
 
-app.use('/api/users', router);
+app.use('/api/users', userRouter);
 app.use(csrfProtection);
+app.use('/api/posts', postRouter);
 
 app.use(express.static(path.join(__dirname, '../../client/build')));
 app.get('/', function (req, res) {
