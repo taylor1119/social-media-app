@@ -5,6 +5,8 @@ export interface IUserBase {
 	profilePicture: string;
 	followers: string[];
 	followings: string[];
+	likedPosts: string[];
+	dislikedPosts: string[];
 	isAdmin: boolean;
 	createdAt: Date;
 	updatedAt: Date;

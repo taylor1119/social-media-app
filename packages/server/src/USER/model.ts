@@ -7,8 +7,10 @@ const UserSchema = new Schema<TUserDB>(
 		username: { type: String, unique: true },
 		password: String,
 		profilePicture: String,
-		followers: Array,
-		followings: Array,
+		followers: [String],
+		followings: [String],
+		likedPosts: [String],
+		dislikedPosts: [String],
 		isAdmin: { type: Boolean, default: false },
 	},
 	{ timestamps: true }
