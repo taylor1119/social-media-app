@@ -1,17 +1,22 @@
-import db from './config/db';
+import chalk from 'chalk';
+import { connectDB, setMongoosePlugin } from './config/db';
 import { IS_PROD, PORT } from './config/secrets';
-import app from './app';
+//must be set before server import
+setMongoosePlugin();
+
+import server from './config/server';
 
 const main = async () => {
-	await db();
+	const mode = IS_PROD
+		? chalk.underline.green('Production')
+		: chalk.underline.yellow('Development');
 
-	const serverLogMsg = IS_PROD
-		? `Server 🚀 At Port: ${PORT} `
-		: `Server 🚀 At: http://localhost:${PORT} `;
+	const logMsg = IS_PROD
+		? chalk.blue(`Server 🚀 in ${mode} mode on port: ${PORT}`)
+		: chalk.blue(`Server 🚀 in ${mode} mode at: http://localhost:${PORT}`);
 
-	app.listen(PORT, () => {
-		console.log(serverLogMsg);
-	});
+	await connectDB();
+	server.listen(PORT, () => console.log(logMsg));
 };
 
 main();
