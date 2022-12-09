@@ -17,6 +17,7 @@
 		"mongod",
 		"unfollow",
 		"unfollowed",
-		"virtuals"
+		"virtuals",
+		"env"
 	]
 }
