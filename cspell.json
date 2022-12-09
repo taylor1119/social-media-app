@@ -18,6 +18,7 @@
 		"unfollow",
 		"unfollowed",
 		"virtuals",
-		"env"
+		"env",
+		"axios"
 	]
 }
