@@ -78,7 +78,7 @@ const PostsWithImageViewer = () => {
 		authorId
 	);
 
-	const posts = useMemo(() => data?.pages.flat() ?? [], [data?.pages]);
+	const posts = data?.pages.flat() ?? [];
 	const postIndex = page * POSTS_PAGE_SIZE + index;
 	const canNext = postIndex + 1 < (posts?.length ?? 0);
 	const canBack = postIndex > 0;

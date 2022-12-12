@@ -1,5 +1,4 @@
 import { Stack } from '@mui/material';
-import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TPaginatedPostsType } from '../../common/types';
 import useGetInfinitePosts from '../../hooks/useGetInfinitePosts';
@@ -19,7 +18,7 @@ const PostsInfiniteList = ({
 		listType,
 		userId
 	);
-	const posts = useMemo(() => data?.pages.flat(), [data?.pages]);
+	const posts = data?.pages.flat();
 	const { pathname } = useLocation();
 
 	return (
