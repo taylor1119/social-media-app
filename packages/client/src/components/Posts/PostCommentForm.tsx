@@ -11,6 +11,8 @@ const PostCommentForm = ({ postId }: { postId: string }) => {
 
 	const { handleSubmit, register, reset } = useForm<{ text: string }>();
 
+	const isSubmitting = postId.includes('placeholder-new-post-id');
+
 	const {
 		mutate: addPostMutation,
 		isSuccess,
@@ -35,11 +37,11 @@ const PostCommentForm = ({ postId }: { postId: string }) => {
 			<Avatar src={currentUser?.avatar} alt={currentUser?.userName} />
 			<TextField
 				autoComplete='off'
-				placeholder='Write a comment...'
+				placeholder={isSubmitting ? 'Submitting post...' : 'Write a comment...'}
 				size='small'
 				fullWidth
 				helperText='Press Enter to post.'
-				disabled={isLoading || !postId}
+				disabled={isLoading || !postId || isSubmitting}
 				{...register('text')}
 			/>
 		</Stack>

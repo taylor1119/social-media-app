@@ -55,7 +55,7 @@ const PostComment = ({ postComment }: { postComment: IPostComment }) => {
 		setEdit(false);
 	});
 	const handleDeleteComment = () => {
-		if (postComment.id === 'placeholder-new-post-comment-id') return;
+		if (postComment.id.includes('placeholder-new-post-comment-id')) return;
 		deletePostComment();
 	};
 

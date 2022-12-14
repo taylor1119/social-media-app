@@ -36,7 +36,7 @@ export const useAddPost = () => {
 			const date = new Date();
 			const newPost: IPost = {
 				...newPostInput,
-				id: 'placeholder-new-post-id',
+				id: 'placeholder-new-post-id-' + Math.random().toString(),
 				author: {
 					id: currentUser.id,
 					userName: currentUser.userName,

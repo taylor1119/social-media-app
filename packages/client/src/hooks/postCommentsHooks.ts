@@ -43,7 +43,7 @@ export const useAddPostComment = (postId?: string) => {
 			const date = new Date();
 			const newComment: IPostComment = {
 				...commentInput,
-				id: 'placeholder-new-post-comment-id',
+				id: 'placeholder-new-post-comment-id-' + Math.random().toString(),
 				postId: postId ?? '',
 				author: {
 					id: currentUser.id,
