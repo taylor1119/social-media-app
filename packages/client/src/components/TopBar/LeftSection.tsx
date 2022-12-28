@@ -15,7 +15,7 @@ const LeftSection = () => {
 		<Stack direction='row' alignItems='center' spacing={1} width='300px'>
 			<Link style={{ marginBottom: '-6.4px' }} to='/'>
 				<img
-					src='https://cdn-icons-png.flaticon.com/512/4207/4207232.png'
+					src='./logo512.png'
 					alt='Logo'
 					style={{ width: '40px', height: '40px' }}
 					crossOrigin='anonymous'
