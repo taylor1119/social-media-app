@@ -10,30 +10,30 @@ import {
 	Typography,
 } from '@mui/material';
 import { TLoginInput, TMockAccount } from '@social-media-app/shared';
-import { UseFormSetValue } from 'react-hook-form';
-import { useQuery } from 'react-query';
+import { UseMutateFunction, useQuery } from 'react-query';
 import { getAccountsQuery } from '../../queries/users';
 import Loading from '../Loading';
 
 interface IMockAccountsListProps {
 	openMockAccountsList: boolean;
 	handleCloseOpenMockAccountsList: () => void;
-	setValue: UseFormSetValue<TLoginInput>;
+	mutate: UseMutateFunction<unknown, unknown, TLoginInput>;
 }
 
 const MockAccountsList = ({
 	handleCloseOpenMockAccountsList,
 	openMockAccountsList,
-	setValue,
+	mutate,
 }: IMockAccountsListProps) => {
 	const { data: accounts, isLoading } = useQuery('accounts', getAccountsQuery, {
 		suspense: false,
 	});
-	const handleSelectAccount = (account: TMockAccount) => () => {
-		setValue('email', account.email);
-		setValue('password', 'password');
-		handleCloseOpenMockAccountsList();
-	};
+	const handleSelectAccount =
+		({ email }: TMockAccount) =>
+		() => {
+			mutate({ email, password: 'password' });
+			handleCloseOpenMockAccountsList();
+		};
 
 	return (
 		<Modal

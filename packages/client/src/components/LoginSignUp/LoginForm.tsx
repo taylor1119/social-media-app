@@ -32,9 +32,8 @@ const LoginForm = () => {
 		useFormReturn: {
 			register,
 			formState: { errors },
-			setValue,
 		},
-		useMutationResult: { isLoading, status },
+		useMutationResult: { isLoading, status, mutate },
 		onSubmit,
 	} = useLogin();
 
@@ -182,7 +181,7 @@ const LoginForm = () => {
 			<MockAccountsList
 				handleCloseOpenMockAccountsList={handleCloseOpenMockAccountsList}
 				openMockAccountsList={openMockAccountsList}
-				setValue={setValue}
+				mutate={mutate}
 			/>
 		</Stack>
 	);
