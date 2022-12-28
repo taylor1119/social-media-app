@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import { logError } from '../common/utils';
 import { MONGODB_URI } from './secrets';
 
-//TODO use in messaging app
 export const setMongoosePlugin = () =>
 	mongoose.plugin((schema: mongoose.Schema) => {
 		const toObjectOption: mongoose.ToObjectOptions = {
