@@ -6,7 +6,10 @@ Social Media App is a fullstack web app with instant messing, posts and friends 
     <img src="https://raw.githubusercontent.com/riyadh-dev/portfolio-website-react/main/public/images/social-media-app/2.png" width="90%"/>
 <p>
 
-**Live preview:** [Social Media App](https://social-media-app-production.up.railway.app/)
+**Live preview:**
+
+- [Railway](https://social-media-app-production.up.railway.app)
+- [Render](https://social-media-app-eoga.onrender.com)
 
 ## Installation
 
