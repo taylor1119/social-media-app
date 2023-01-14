@@ -264,15 +264,7 @@ const ChatsListItem = ({ friend }: { friend: TUiUser }) => {
 			<ListItemAvatar>
 				<Avatar src={friend.avatar} alt={friend.userName} />
 			</ListItemAvatar>
-			<ListItemText
-				primary={friend.userName}
-				secondary={
-					<Stack direction='row' justifyContent='space-between'>
-						<Typography>{lastMessage?.text}</Typography>
-						{/* <DoneIcon /> */}
-					</Stack>
-				}
-			/>
+			<ListItemText primary={friend.userName} secondary={lastMessage?.text} />
 		</ListItemButton>
 	);
 };
