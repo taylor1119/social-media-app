@@ -1,13 +1,9 @@
 import { Avatar, Paper, Stack, styled, Typography } from '@mui/material';
 import { IChatMessage } from '@social-media-app/shared/src';
-import { useRecoilValue } from 'recoil';
-import { queryClient } from '../..';
 import { TUiUser } from '../../common/types';
-import queryKeys from '../../constants/reactQueryKeys';
-import { currentUserState } from '../../recoil/atoms';
 
 const ChatMsgPaper = styled(Paper)(({ theme }) => ({
-	backgroundColor: theme.palette.mode === 'dark' ? '#383838' : '#f0f2f5',
+	backgroundColor: theme.palette.mode === 'dark' ? '#383838' : '#e4e6eb',
 	borderRadius: '16px',
 }));
 
@@ -17,24 +13,16 @@ const OwmChatMsgPaper = styled(Paper)(({ theme }) => ({
 	borderRadius: '16px',
 }));
 
-const getFriendFromQueryCache = (friendId: string, userId?: string) =>
-	queryClient
-		.getQueryData<TUiUser[]>(queryKeys.friends(userId))
-		?.reduce((prev, curr) => {
-			if (prev) return prev;
-			if (curr.id === friendId) return curr;
-			return prev;
-		});
-
-const ChatMessage = ({ chatMessage }: { chatMessage: IChatMessage }) => {
-	const currentUser = useRecoilValue(currentUserState);
-	const senderId = chatMessage.senderId;
-	const isSenderCurrentUser = senderId === currentUser?.id;
-	const sender = isSenderCurrentUser
-		? currentUser
-		: getFriendFromQueryCache(senderId, currentUser?.id);
-
-	if (isSenderCurrentUser)
+const ChatMessage = ({
+	chatMessage,
+	sender,
+	isOwn,
+}: {
+	chatMessage: IChatMessage;
+	sender: TUiUser;
+	isOwn: boolean;
+}) => {
+	if (isOwn)
 		return (
 			<Stack direction='row' spacing={1}>
 				<Avatar

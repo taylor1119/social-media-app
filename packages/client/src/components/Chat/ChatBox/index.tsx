@@ -24,7 +24,10 @@ import useChatBox from '../../../hooks/useChatBox';
 import useGetConversation from '../../../hooks/useGetConversation';
 import useSendMessage from '../../../hooks/useSendMessage';
 import { useTypingNotification } from '../../../hooks/useTypingNotification';
-import { typingIndicatorMapState } from '../../../recoil/atoms';
+import {
+	currentUserState,
+	typingIndicatorMapState,
+} from '../../../recoil/atoms';
 import ChatMessage from '../ChatMessage';
 import TypingIndicator from '../TypingIndicator';
 
@@ -43,6 +46,7 @@ const CustomInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const ChatBox = ({ user }: { user: TUiUser }) => {
+	const currentUser = useRecoilValue(currentUserState);
 	const { data: chatMessages } = useGetConversation(user.id);
 	const { onMinimize, onClose } = useChatBox(user);
 	const { onSubmit, register } = useSendMessage(user.id);
@@ -112,7 +116,16 @@ const ChatBox = ({ user }: { user: TUiUser }) => {
 					?.slice(0)
 					.reverse()
 					.map((chatMessage) => (
-						<ChatMessage key={chatMessage.id} chatMessage={chatMessage} />
+						<ChatMessage
+							key={chatMessage.id}
+							chatMessage={chatMessage}
+							isOwn={currentUser?.id === chatMessage.senderId}
+							sender={
+								currentUser?.id === chatMessage.senderId
+									? (currentUser as TUiUser)
+									: user
+							}
+						/>
 					))}
 			</CardContent>
 			<CardActions sx={{ justifyContent: 'space-between' }}>
