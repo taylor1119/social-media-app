@@ -129,16 +129,7 @@ const ChatBox = () => {
 				direction='column-reverse'
 			>
 				{typingIndicatorMap.get(selectedFriend.id) && (
-					<Stack direction='row' spacing={1} sx={{ maxWidth: '600px' }}>
-						<Avatar
-							src={selectedFriend.avatar}
-							alt={selectedFriend.userName}
-							sx={{ alignSelf: 'flex-end', width: '28px', height: '28px' }}
-						/>
-						<ChatMsgPaper sx={{ px: '24px', py: '14px' }} elevation={0}>
-							<TypingIndicator />
-						</ChatMsgPaper>
-					</Stack>
+					<TypingIndicator avatar={selectedFriend.avatar} />
 				)}
 				{messages
 					?.slice()
