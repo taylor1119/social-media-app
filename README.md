@@ -1,4 +1,4 @@
-# <img src="./packages/client/public/logo512.png" width="24"/> Social Media App
+# <img src="./apps/web/public/logo.png" width="24"/> Social Media App
 
 Social Media App is a fullstack web app with instant messing, posts and friends lists
 

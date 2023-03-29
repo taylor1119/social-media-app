@@ -1,6 +1,18 @@
+.DS_Store
 node_modules
-coverage
-build
-dist
+.turbo
 *.log
+.next
+dist
+dist-ssr
+*.local
 .env
+.cache
+server/dist
+public/dist
+.turbo
+
+# cache
+.cspellcache
+.eslintcache
+.prettier-cache
