@@ -1,6 +1,6 @@
 import cookie from 'cookie-parser';
 import cors from 'cors';
-import express from 'express';
+import express, { Express, RequestHandler } from 'express';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import hpp from 'hpp';
@@ -11,7 +11,7 @@ import { errorRequestHandler } from '../common/middlewares';
 import router from './router';
 import { CLIENT_ORIGIN, COOKIE_SECRET, IS_PROD } from './secrets';
 
-const app = express();
+const app: Express = express();
 
 //cors for dev env
 if (!IS_PROD) app.use(cors({ origin: CLIENT_ORIGIN, credentials: true }));
@@ -44,19 +44,19 @@ if (!IS_PROD) {
 export const socketConnections = new Map<string, WebSocket.WebSocket>();
 
 //Set up cookie parser
-export const cookieParser = cookie(COOKIE_SECRET);
+export const cookieParser: RequestHandler = cookie(COOKIE_SECRET);
 app.use(cookieParser);
 
 app.use('/api', router);
 
 // Serve static assets in production
-app.use('/static', express.static(path.join(__dirname, '../../static')));
+app.use('/static', express.static(path.join(__dirname, '../static')));
 
-// Serve client build in production
 if (IS_PROD) {
-	app.use(express.static(path.join(__dirname, '../../../client/build')));
-	app.get('*', function (req, res) {
-		res.sendFile(path.join(__dirname, '../../../client/build', 'index.html'));
+	// Serve client build in production
+	app.use(express.static(path.join(__dirname, '../../web/dist')));
+	app.get('/', function (req, res) {
+		res.sendFile(path.join(__dirname, '../../web/dist', 'index.html'));
 	});
 }
 

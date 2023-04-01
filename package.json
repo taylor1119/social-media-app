@@ -3,6 +3,7 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo run build --no-daemon",
+		"start": "pnpm --filter api start",
 		"clean": "turbo run clean --no-daemon",
 		"dev": "turbo run dev --no-cache --continue --no-daemon",
 		"debug": "turbo run debug --no-cache --continue --no-daemon",
@@ -17,7 +18,7 @@
 		"husky": "^8.0.3",
 		"lint-staged": "^13.2.0",
 		"prettier": "^2.8.7",
-		"turbo": "^1.8.7"
+		"turbo": "^1.8.8"
 	},
 	"lint-staged": {
 		"*": [
