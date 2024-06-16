@@ -1,6 +1,6 @@
-import ShareIcon from '@mui/icons-material/Share';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ShareIcon from '@mui/icons-material/Share'
+import ThumbDownIcon from '@mui/icons-material/ThumbDown'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import {
 	Card,
 	CardActions,
@@ -10,8 +10,8 @@ import {
 	IconButton,
 	Skeleton,
 	Stack,
-} from '@mui/material';
-import PostForm from './PostForm';
+} from '@mui/material'
+import PostForm from './PostForm'
 
 //TODO pass down userId to post comp
 const PostsInfiniteListSkeleton = () => {
@@ -27,12 +27,26 @@ const PostsInfiniteListSkeleton = () => {
 			{[...Array(2)].map((_, idx) => (
 				<Card key={idx}>
 					<CardHeader
-						avatar={<Skeleton variant='circular' width={40} height={40} />}
-						title={<Skeleton variant='text' height={20} width={150} />}
-						subheader={<Skeleton variant='text' height={20} width={130} />}
+						avatar={
+							<Skeleton
+								variant='circular'
+								width={40}
+								height={40}
+							/>
+						}
+						title={
+							<Skeleton variant='text' height={20} width={150} />
+						}
+						subheader={
+							<Skeleton variant='text' height={20} width={130} />
+						}
 					/>
 					<CardMedia>
-						<Skeleton variant='rectangular' height={300} width={600} />
+						<Skeleton
+							variant='rectangular'
+							height={300}
+							width={600}
+						/>
 					</CardMedia>
 					<CardContent>
 						<Skeleton variant='text' height={24} width={570} />
@@ -53,7 +67,7 @@ const PostsInfiniteListSkeleton = () => {
 				</Card>
 			))}
 		</Stack>
-	);
-};
+	)
+}
 
-export default PostsInfiniteListSkeleton;
+export default PostsInfiniteListSkeleton

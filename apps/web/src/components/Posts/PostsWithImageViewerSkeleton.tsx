@@ -3,10 +3,10 @@ import {
 	ArrowForward,
 	Close as CloseIcon,
 	MoreVert as MoreVertIcon,
-} from '@mui/icons-material';
-import ShareIcon from '@mui/icons-material/Share';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+} from '@mui/icons-material'
+import ShareIcon from '@mui/icons-material/Share'
+import ThumbDownIcon from '@mui/icons-material/ThumbDown'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import {
 	Avatar,
 	Box,
@@ -16,10 +16,10 @@ import {
 	Paper,
 	Skeleton,
 	Stack,
-} from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import PostCommentForm from './PostCommentForm';
-import PostCommentsSkeleton from './PostCommentsSkeleton';
+} from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom'
+import PostCommentForm from './PostCommentForm'
+import PostCommentsSkeleton from './PostCommentsSkeleton'
 
 const PostsWithImageViewerSkeleton = () => (
 	<Stack height='100vh' direction={{ md: 'row' }}>
@@ -95,18 +95,42 @@ const PostsWithImageViewerSkeleton = () => (
 		>
 			<Stack flexGrow='1' overflow='auto'>
 				<CardHeader
-					avatar={<Skeleton variant='circular' height='40px' width='40px' />}
+					avatar={
+						<Skeleton
+							variant='circular'
+							height='40px'
+							width='40px'
+						/>
+					}
 					action={
 						<IconButton aria-label='settings'>
 							<MoreVertIcon />
 						</IconButton>
 					}
-					title={<Skeleton variant='rectangular' height='16px' width='140px' />}
+					title={
+						<Skeleton
+							variant='rectangular'
+							height='16px'
+							width='140px'
+						/>
+					}
 				/>
 				<Stack spacing={2} p='16px'>
-					<Skeleton variant='rectangular' height='16px' width='360px' />
-					<Skeleton variant='rectangular' height='16px' width='330px' />
-					<Skeleton variant='rectangular' height='16px' width='300px' />
+					<Skeleton
+						variant='rectangular'
+						height='16px'
+						width='360px'
+					/>
+					<Skeleton
+						variant='rectangular'
+						height='16px'
+						width='330px'
+					/>
+					<Skeleton
+						variant='rectangular'
+						height='16px'
+						width='300px'
+					/>
 				</Stack>
 
 				<Divider variant='middle' />
@@ -133,6 +157,6 @@ const PostsWithImageViewerSkeleton = () => (
 			<PostCommentForm postId='' />
 		</Paper>
 	</Stack>
-);
+)
 
-export default PostsWithImageViewerSkeleton;
+export default PostsWithImageViewerSkeleton

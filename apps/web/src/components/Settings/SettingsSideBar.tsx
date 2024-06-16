@@ -1,24 +1,24 @@
 import {
 	Article as ArticleIcon,
 	Person as PersonIcon,
-} from '@mui/icons-material';
-import { ListItemButton } from '@mui/material';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { leftSideBarOpenState } from '../../recoil/atoms';
+} from '@mui/icons-material'
+import { ListItemButton } from '@mui/material'
+import Drawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { leftSideBarOpenState } from '../../recoil/atoms'
 
 const SettingsSideBar = () => {
-	const [sideBarOpen, setSideBarOpen] = useRecoilState(leftSideBarOpenState);
+	const [sideBarOpen, setSideBarOpen] = useRecoilState(leftSideBarOpenState)
 
 	const handleDrawerToggle = () => {
-		setSideBarOpen(!sideBarOpen);
-	};
+		setSideBarOpen(!sideBarOpen)
+	}
 
-	const { pathname } = useLocation();
+	const { pathname } = useLocation()
 
 	const drawer = (
 		<List sx={{ mx: '8px', mt: '76px' }}>
@@ -43,7 +43,7 @@ const SettingsSideBar = () => {
 				<ListItemText>Intro</ListItemText>
 			</ListItemButton>
 		</List>
-	);
+	)
 
 	return (
 		<>
@@ -81,7 +81,7 @@ const SettingsSideBar = () => {
 				{drawer}
 			</Drawer>
 		</>
-	);
-};
+	)
+}
 
-export default SettingsSideBar;
+export default SettingsSideBar

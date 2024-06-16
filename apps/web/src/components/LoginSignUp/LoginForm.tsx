@@ -4,7 +4,7 @@ import {
 	SwitchAccount as SwitchAccountIcon,
 	Visibility,
 	VisibilityOff,
-} from '@mui/icons-material';
+} from '@mui/icons-material'
 import {
 	Box,
 	Button,
@@ -18,14 +18,14 @@ import {
 	Paper,
 	Stack,
 	Typography,
-} from '@mui/material';
-import { lazy, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { useLogin } from '../../hooks/usersHooks';
-import { themeState } from '../../recoil/atoms';
-import MockAccountsList from './MockAccountsList';
+} from '@mui/material'
+import { lazy, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import { useLogin } from '../../hooks/usersHooks'
+import { themeState } from '../../recoil/atoms'
+import MockAccountsList from './MockAccountsList'
 
-const SignUpForm = lazy(() => import('./SignUpForm'));
+const SignUpForm = lazy(() => import('./SignUpForm'))
 
 const LoginForm = () => {
 	const {
@@ -35,46 +35,46 @@ const LoginForm = () => {
 		},
 		useMutationResult: { isLoading, status, mutate },
 		onSubmit,
-	} = useLogin();
+	} = useLogin()
 
-	const [showPassword, setShowPassword] = useState(false);
-	const handleToggleShowPassword = () => setShowPassword((prev) => !prev);
+	const [showPassword, setShowPassword] = useState(false)
+	const handleToggleShowPassword = () => setShowPassword((prev) => !prev)
 
-	const [openSignUpForm, setOpenSignUpForm] = useState(false);
-	const handleOpenSignUpForm = () => setOpenSignUpForm(true);
-	const handleCloseSignUpForm = () => setOpenSignUpForm(false);
+	const [openSignUpForm, setOpenSignUpForm] = useState(false)
+	const handleOpenSignUpForm = () => setOpenSignUpForm(true)
+	const handleCloseSignUpForm = () => setOpenSignUpForm(false)
 
-	const [openMockAccountsList, setMockAccountsList] = useState(false);
-	const handleOpenOpenMockAccountsList = () => setMockAccountsList(true);
-	const handleCloseOpenMockAccountsList = () => setMockAccountsList(false);
+	const [openMockAccountsList, setMockAccountsList] = useState(false)
+	const handleOpenOpenMockAccountsList = () => setMockAccountsList(true)
+	const handleCloseOpenMockAccountsList = () => setMockAccountsList(false)
 
-	let LoginBtnText = 'login';
-	let loginBtnColor: ButtonTypeMap['props']['color'] = 'primary';
+	let LoginBtnText = 'login'
+	let loginBtnColor: ButtonTypeMap['props']['color'] = 'primary'
 
 	switch (status) {
 		case 'idle':
-			loginBtnColor = 'primary';
-			LoginBtnText = 'login';
-			break;
+			loginBtnColor = 'primary'
+			LoginBtnText = 'login'
+			break
 		case 'loading':
-			LoginBtnText = 'login in...';
-			break;
+			LoginBtnText = 'login in...'
+			break
 		case 'error':
-			LoginBtnText = 'something went wrong';
-			loginBtnColor = 'error';
-			break;
+			LoginBtnText = 'something went wrong'
+			loginBtnColor = 'error'
+			break
 		default:
-			break;
+			break
 	}
 
-	const [theme, setTheme] = useRecoilState(themeState);
+	const [theme, setTheme] = useRecoilState(themeState)
 
 	const handleToggleTheme = () => {
 		setTheme((currVal) => ({
 			isUserPicked: true,
 			mode: currVal.mode === 'dark' ? 'light' : 'dark',
-		}));
-	};
+		}))
+	}
 
 	return (
 		<Stack height='100vh'>
@@ -98,12 +98,16 @@ const LoginForm = () => {
 						SocialApp
 					</Typography>
 					<Typography variant='h5' gutterBottom>
-						Connect with friends and the world around you on SocialApp.
+						Connect with friends and the world around you on
+						SocialApp.
 					</Typography>
 				</Box>
 				<Paper sx={{ p: '20px', width: '400px' }}>
 					<Stack spacing={2} component='form' onSubmit={onSubmit}>
-						<FormControl variant='outlined' error={Boolean(errors.email)}>
+						<FormControl
+							variant='outlined'
+							error={Boolean(errors.email)}
+						>
 							<OutlinedInput
 								placeholder='Email'
 								id='email'
@@ -113,7 +117,10 @@ const LoginForm = () => {
 								{errors.email?.message}
 							</FormHelperText>
 						</FormControl>
-						<FormControl variant='outlined' error={Boolean(errors.password)}>
+						<FormControl
+							variant='outlined'
+							error={Boolean(errors.password)}
+						>
 							<OutlinedInput
 								id='password'
 								placeholder='Password'
@@ -126,7 +133,11 @@ const LoginForm = () => {
 											onClick={handleToggleShowPassword}
 											edge='end'
 										>
-											{showPassword ? <VisibilityOff /> : <Visibility />}
+											{showPassword ? (
+												<VisibilityOff />
+											) : (
+												<Visibility />
+											)}
 										</IconButton>
 									</InputAdornment>
 								}
@@ -170,7 +181,11 @@ const LoginForm = () => {
 			</Stack>
 			<Stack justifyContent='center' alignItems='center' p='16px'>
 				<IconButton size='large' onClick={handleToggleTheme}>
-					{theme.mode === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
+					{theme.mode === 'dark' ? (
+						<DarkModeIcon />
+					) : (
+						<LightModeIcon />
+					)}
 				</IconButton>
 			</Stack>
 
@@ -179,12 +194,14 @@ const LoginForm = () => {
 				openSignUpForm={openSignUpForm}
 			/>
 			<MockAccountsList
-				handleCloseOpenMockAccountsList={handleCloseOpenMockAccountsList}
+				handleCloseOpenMockAccountsList={
+					handleCloseOpenMockAccountsList
+				}
 				openMockAccountsList={openMockAccountsList}
 				mutate={mutate}
 			/>
 		</Stack>
-	);
-};
+	)
+}
 
-export default LoginForm;
+export default LoginForm

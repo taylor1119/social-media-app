@@ -1,11 +1,11 @@
-import { Grid, Stack } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import { useGetCurrentUserFriends } from '../../hooks/usersHooks';
-import UserCard from './UserCard';
+import { Grid, Stack } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import { useGetCurrentUserFriends } from '../../hooks/usersHooks'
+import UserCard from './UserCard'
 
 const FriendsCardList = () => {
-	const { data: friends } = useGetCurrentUserFriends();
-	if (!friends) return null;
+	const { data: friends } = useGetCurrentUserFriends()
+	if (!friends) return null
 
 	return (
 		<>
@@ -26,7 +26,7 @@ const FriendsCardList = () => {
 				))}
 			</Stack>
 		</>
-	);
-};
+	)
+}
 
-export default FriendsCardList;
+export default FriendsCardList

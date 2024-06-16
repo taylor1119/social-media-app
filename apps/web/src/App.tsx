@@ -5,18 +5,18 @@ import {
 	Theme,
 	ThemeProvider,
 	useMediaQuery,
-} from '@mui/material';
-import { Suspense, useEffect, useMemo } from 'react';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { RouterProvider } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import RecoilDebugButton from './components/Debug/RecoilDebugButton';
-import Loading from './components/Loading';
-import router from './components/router';
-import { useWebSocketInit } from './hooks/useWebSocketInit';
-import { themeState } from './recoil/atoms';
+} from '@mui/material'
+import { Suspense, useEffect, useMemo } from 'react'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { RouterProvider } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import RecoilDebugButton from './components/Debug/RecoilDebugButton'
+import Loading from './components/Loading'
+import router from './components/router'
+import { useWebSocketInit } from './hooks/useWebSocketInit'
+import { themeState } from './recoil/atoms'
 
-const IS_DEV = import.meta.env.MODE === 'development';
+const IS_DEV = import.meta.env.MODE === 'development'
 
 const getTheme = (mode: PaletteMode): Theme =>
 	createTheme({
@@ -43,30 +43,30 @@ const getTheme = (mode: PaletteMode): Theme =>
 				},
 			},
 		},
-	});
+	})
 
 function App() {
-	const [theme, setTheme] = useRecoilState(themeState);
+	const [theme, setTheme] = useRecoilState(themeState)
 
 	const prefThemeMode = useMediaQuery('(prefers-color-scheme: dark)')
 		? 'dark'
-		: 'light';
+		: 'light'
 
 	const muiTheme = useMemo(
 		() => getTheme(theme.isUserPicked ? theme.mode : prefThemeMode),
 		[prefThemeMode, theme]
-	);
+	)
 
 	useEffect(() => {
-		if (theme.isUserPicked) return;
+		if (theme.isUserPicked) return
 
 		setTheme({
 			isUserPicked: false,
 			mode: prefThemeMode,
-		});
-	}, [prefThemeMode, setTheme, theme.isUserPicked]);
+		})
+	}, [prefThemeMode, setTheme, theme.isUserPicked])
 
-	useWebSocketInit();
+	useWebSocketInit()
 
 	return (
 		<ThemeProvider theme={muiTheme}>
@@ -82,7 +82,7 @@ function App() {
 				</>
 			)}
 		</ThemeProvider>
-	);
+	)
 }
 
-export default App;
+export default App

@@ -1,9 +1,9 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Delete as DeleteIcon, Edit } from '@mui/icons-material';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ShareIcon from '@mui/icons-material/Share';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Delete as DeleteIcon, Edit } from '@mui/icons-material'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import ShareIcon from '@mui/icons-material/Share'
+import ThumbDownIcon from '@mui/icons-material/ThumbDown'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import {
 	Badge,
 	Button,
@@ -18,81 +18,82 @@ import {
 	MenuItem,
 	OutlinedInput,
 	Stack,
-} from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { Suspense, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { TPostInput } from 'shared';
-import { TPaginatedPost } from '../../common/types';
-import { updatePostValidationSchema } from '../../common/validation';
+} from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardHeader from '@mui/material/CardHeader'
+import CardMedia from '@mui/material/CardMedia'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import { Suspense, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { TPostInput } from 'shared'
+import { TPaginatedPost } from '../../common/types'
+import { updatePostValidationSchema } from '../../common/validation'
 import {
 	useDeletePost,
 	useDislikePost,
 	useLikePost,
 	useUpdatePost,
-} from '../../hooks/postsHooks';
-import { currentUserState } from '../../recoil/atoms';
-import PostCommentForm from './PostCommentForm';
-import PostComments from './PostComments';
-import PostCommentsSkeleton from './PostCommentsSkeleton';
+} from '../../hooks/postsHooks'
+import { currentUserState } from '../../recoil/atoms'
+import PostCommentForm from './PostCommentForm'
+import PostComments from './PostComments'
+import PostCommentsSkeleton from './PostCommentsSkeleton'
 
 const Post = ({
 	post,
 	observedItemRef: lastItemRef,
 }: {
-	post: TPaginatedPost;
-	observedItemRef?: (node: HTMLDivElement) => void;
+	post: TPaginatedPost
+	observedItemRef?: (node: HTMLDivElement) => void
 }) => {
-	const [showComments, setShowComments] = useState(false);
-	const handleShowComments = () => setShowComments((prev) => !prev);
+	const [showComments, setShowComments] = useState(false)
+	const handleShowComments = () => setShowComments((prev) => !prev)
 
-	const [seeMore, setSeeMore] = useState(false);
-	const handleSeeMore = () => setSeeMore(!seeMore);
-	const canSeeMore = post.description.length > 200;
+	const [seeMore, setSeeMore] = useState(false)
+	const handleSeeMore = () => setSeeMore(!seeMore)
+	const canSeeMore = post.description.length > 200
 	const description =
 		canSeeMore === true && seeMore === false
 			? post.description.substring(0, 200) + ' ...'
-			: post.description;
+			: post.description
 
-	const { mutate: likeMutation } = useLikePost(post.id, post.page, post.index);
+	const { mutate: likeMutation } = useLikePost(post.id, post.page, post.index)
 	const { mutate: dislikeMutation } = useDislikePost(
 		post.id,
 		post.page,
 		post.index
-	);
+	)
 
-	const currentUser = useRecoilValue(currentUserState);
+	const currentUser = useRecoilValue(currentUserState)
 
-	const isLiked = post.likes.includes(currentUser?.id ?? '');
-	const isDisliked = post.dislikes.includes(currentUser?.id ?? '');
+	const isLiked = post.likes.includes(currentUser?.id ?? '')
+	const isDisliked = post.dislikes.includes(currentUser?.id ?? '')
 
-	const location = useLocation();
-	const postsType = location.pathname === '/posts/liked' ? 'liked' : 'timeline';
+	const location = useLocation()
+	const postsType =
+		location.pathname === '/posts/liked' ? 'liked' : 'timeline'
 
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const openSettings = Boolean(anchorEl);
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+	const openSettings = Boolean(anchorEl)
 	const handleSettingsOpen: React.MouseEventHandler<HTMLButtonElement> = (
 		event
-	) => setAnchorEl(event.currentTarget);
-	const handleSettingsClose = () => setAnchorEl(null);
+	) => setAnchorEl(event.currentTarget)
+	const handleSettingsClose = () => setAnchorEl(null)
 
-	const [edit, setEdit] = useState(false);
+	const [edit, setEdit] = useState(false)
 	const handleEnableEdit = () => {
-		handleSettingsClose();
-		setEdit(true);
-	};
+		handleSettingsClose()
+		setEdit(true)
+	}
 
-	const { mutate: updatePost } = useUpdatePost(post.page, post.index);
-	const { mutate: deletePost } = useDeletePost(post.page, post.index);
+	const { mutate: updatePost } = useUpdatePost(post.page, post.index)
+	const { mutate: deletePost } = useDeletePost(post.page, post.index)
 
 	const { register, handleSubmit } = useForm<TPostInput>({
 		resolver: yupResolver(updatePostValidationSchema),
@@ -100,19 +101,19 @@ const Post = ({
 			description: post.description,
 			img: post.img,
 		},
-	});
+	})
 
 	const onSubmit = handleSubmit((postInput) => {
-		updatePost({ postId: post.id, postInput });
-		setEdit(false);
-	});
+		updatePost({ postId: post.id, postInput })
+		setEdit(false)
+	})
 
 	const handleDeletePost = () => {
-		handleSettingsClose();
-		deletePost(post.id);
-	};
+		handleSettingsClose()
+		deletePost(post.id)
+	}
 
-	const isCurrentUserAuthor = post.author.id === currentUser?.id;
+	const isCurrentUserAuthor = post.author.id === currentUser?.id
 
 	return (
 		<Card ref={lastItemRef}>
@@ -130,7 +131,9 @@ const Post = ({
 					isCurrentUserAuthor && (
 						<IconButton
 							id='settings-button'
-							aria-controls={openSettings ? 'settings-menu' : undefined}
+							aria-controls={
+								openSettings ? 'settings-menu' : undefined
+							}
 							aria-haspopup='true'
 							aria-expanded={openSettings ? 'true' : undefined}
 							onClick={handleSettingsOpen}
@@ -140,11 +143,14 @@ const Post = ({
 					)
 				}
 				title={post.author.userName}
-				subheader={new Date(post.createdAt).toLocaleDateString('en-gb', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric',
-				})}
+				subheader={new Date(post.createdAt).toLocaleDateString(
+					'en-gb',
+					{
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric',
+					}
+				)}
 			/>
 			{post.img && !edit && (
 				<RouterLink
@@ -163,7 +169,9 @@ const Post = ({
 				{edit ? (
 					<Stack component='form' spacing={2} onSubmit={onSubmit}>
 						<FormControl fullWidth variant='outlined'>
-							<InputLabel htmlFor='post-image'>Post Image</InputLabel>
+							<InputLabel htmlFor='post-image'>
+								Post Image
+							</InputLabel>
 							<OutlinedInput
 								id='post-image'
 								label='post-image'
@@ -173,7 +181,9 @@ const Post = ({
 						</FormControl>
 
 						<FormControl fullWidth variant='outlined'>
-							<InputLabel htmlFor='post-text'>Post Text</InputLabel>
+							<InputLabel htmlFor='post-text'>
+								Post Text
+							</InputLabel>
 							<OutlinedInput
 								id='post-text'
 								label='post-text'
@@ -242,7 +252,9 @@ const Post = ({
 							horizontal: 'right',
 						}}
 					>
-						<ThumbDownIcon color={isDisliked ? 'error' : 'inherit'} />
+						<ThumbDownIcon
+							color={isDisliked ? 'error' : 'inherit'}
+						/>
 					</Badge>
 				</IconButton>
 				<IconButton aria-label='share'>
@@ -262,7 +274,9 @@ const Post = ({
 
 			{showComments && (
 				<Stack direction='column' spacing={3} sx={{ m: 3 }}>
-					<Suspense fallback={<PostCommentsSkeleton commentsNumber={8} />}>
+					<Suspense
+						fallback={<PostCommentsSkeleton commentsNumber={8} />}
+					>
 						<PostComments post={post} />
 					</Suspense>
 				</Stack>
@@ -293,7 +307,7 @@ const Post = ({
 				</MenuItem>
 			</Menu>
 		</Card>
-	);
-};
+	)
+}
 
-export default Post;
+export default Post

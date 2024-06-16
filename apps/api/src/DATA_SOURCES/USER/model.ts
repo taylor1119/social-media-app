@@ -1,6 +1,6 @@
-import bcrypt from 'bcryptjs';
-import { model, Schema } from 'mongoose';
-import { IUser } from 'shared';
+import bcrypt from 'bcryptjs'
+import { model, Schema } from 'mongoose'
+import { IUser } from 'shared'
 
 const UserSchema = new Schema<IUser>({
 	email: { type: String, unique: true },
@@ -21,13 +21,13 @@ const UserSchema = new Schema<IUser>({
 		studiedAt: String,
 		relationshipStatus: String,
 	},
-});
+})
 
 UserSchema.pre('save', function (next) {
-	if (!this.isModified('password')) return next();
-	const salt = bcrypt.genSaltSync(10);
-	this.password = bcrypt.hashSync(this.password, salt);
-	next();
-});
+	if (!this.isModified('password')) return next()
+	const salt = bcrypt.genSaltSync(10)
+	this.password = bcrypt.hashSync(this.password, salt)
+	next()
+})
 
-export default model('User', UserSchema);
+export default model('User', UserSchema)

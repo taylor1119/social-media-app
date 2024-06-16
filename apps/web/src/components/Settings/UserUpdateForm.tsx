@@ -1,4 +1,4 @@
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 import {
 	Box,
 	Button,
@@ -12,9 +12,9 @@ import {
 	OutlinedInput,
 	Stack,
 	Typography,
-} from '@mui/material';
-import { useState } from 'react';
-import { useUpdateUserProfile } from '../../hooks/usersHooks';
+} from '@mui/material'
+import { useState } from 'react'
+import { useUpdateUserProfile } from '../../hooks/usersHooks'
 
 const UserUpdateForm = () => {
 	const {
@@ -24,35 +24,35 @@ const UserUpdateForm = () => {
 		},
 		useMutationReturn: { status, isLoading, error },
 		onSubmit,
-	} = useUpdateUserProfile();
+	} = useUpdateUserProfile()
 
-	const [showPassword, setShowPassword] = useState(false);
-	const handleToggleShowPassword = () => setShowPassword((prev) => !prev);
+	const [showPassword, setShowPassword] = useState(false)
+	const handleToggleShowPassword = () => setShowPassword((prev) => !prev)
 
-	let singUpBtnText = 'Update Profile';
-	let singUpBtnColor: ButtonTypeMap['props']['color'] = 'primary';
+	let singUpBtnText = 'Update Profile'
+	let singUpBtnColor: ButtonTypeMap['props']['color'] = 'primary'
 
 	switch (status) {
 		case 'idle':
-			singUpBtnColor = 'primary';
-			singUpBtnText = 'Update Profile';
-			break;
+			singUpBtnColor = 'primary'
+			singUpBtnText = 'Update Profile'
+			break
 		case 'loading':
-			singUpBtnText = 'Updating...';
-			break;
+			singUpBtnText = 'Updating...'
+			break
 		case 'success':
-			singUpBtnText = 'Profile Updated';
-			singUpBtnColor = 'success';
-			break;
+			singUpBtnText = 'Profile Updated'
+			singUpBtnColor = 'success'
+			break
 		case 'error':
-			singUpBtnText = 'something went wrong';
-			singUpBtnColor = 'error';
-			break;
+			singUpBtnText = 'something went wrong'
+			singUpBtnColor = 'error'
+			break
 		default:
-			break;
+			break
 	}
 
-	const serverResErr = error?.response?.data;
+	const serverResErr = error?.response?.data
 
 	return (
 		<Box sx={{ maxWidth: '600px', p: '20px' }}>
@@ -126,7 +126,9 @@ const UserUpdateForm = () => {
 						variant='outlined'
 						error={Boolean(errors.confirmEmail)}
 					>
-						<InputLabel htmlFor='confirmEmail'>Confirm Email</InputLabel>
+						<InputLabel htmlFor='confirmEmail'>
+							Confirm Email
+						</InputLabel>
 						<OutlinedInput
 							id='confirmEmail'
 							label='confirmEmail'
@@ -163,7 +165,9 @@ const UserUpdateForm = () => {
 						variant='outlined'
 						error={Boolean(errors.confirmPassword)}
 					>
-						<InputLabel htmlFor='confirmPassword'>Confirm Password</InputLabel>
+						<InputLabel htmlFor='confirmPassword'>
+							Confirm Password
+						</InputLabel>
 						<OutlinedInput
 							id='confirmPassword'
 							label='confirmPassword'
@@ -177,7 +181,11 @@ const UserUpdateForm = () => {
 										onClick={handleToggleShowPassword}
 										edge='end'
 									>
-										{showPassword ? <VisibilityOff /> : <Visibility />}
+										{showPassword ? (
+											<VisibilityOff />
+										) : (
+											<Visibility />
+										)}
 									</IconButton>
 								</InputAdornment>
 							}
@@ -199,7 +207,7 @@ const UserUpdateForm = () => {
 				</Button>
 			</Stack>
 		</Box>
-	);
-};
+	)
+}
 
-export default UserUpdateForm;
+export default UserUpdateForm

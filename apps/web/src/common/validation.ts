@@ -1,7 +1,7 @@
-import { isEmpty } from 'lodash';
-import { mixed, object, ref, string } from 'yup';
+import { isEmpty } from 'lodash'
+import { mixed, object, ref, string } from 'yup'
 
-const transformFunction = (val: unknown) => (val ? val : undefined);
+const transformFunction = (val: unknown) => (val ? val : undefined)
 
 export const signUpValidationSchema = object({
 	userName: string().required('Username is a required field'),
@@ -15,20 +15,20 @@ export const signUpValidationSchema = object({
 	confirmPassword: string()
 		.required('Password is a required field')
 		.oneOf([ref('password')], 'Passwords do not match'),
-});
+})
 
 export const loginValidationSchema = object({
 	email: string().required('Email is a required field'),
 	password: string().required(),
-});
+})
 
 export const chatMessageSchema = object({
 	text: string().required('cant sent empty chat message'),
-});
+})
 
 export const searchUserInputSchema = object({
 	text: string().min(3).required('cant search an empty string'),
-});
+})
 
 export const updateUserProfileValidationSchema = object({
 	userName: string().transform(transformFunction),
@@ -48,9 +48,9 @@ export const updateUserProfileValidationSchema = object({
 		? this.createError({
 				path: this.path,
 				message: 'fill at least on filled',
-		  })
-		: true;
-});
+			})
+		: true
+})
 
 export const updateUserIntroValidationSchema = object({
 	bio: string().transform(transformFunction),
@@ -60,18 +60,22 @@ export const updateUserIntroValidationSchema = object({
 	studiesAt: string().transform(transformFunction),
 	studiedAt: string().transform(transformFunction),
 	relationshipStatus: mixed<
-		'Single' | 'Married' | 'Engaged' | 'In A Relationship' | 'Its Complicated'
+		| 'Single'
+		| 'Married'
+		| 'Engaged'
+		| 'In A Relationship'
+		| 'Its Complicated'
 	>().transform((val: unknown) => (val || val === '' ? val : undefined)),
 }).test('notEmpty', function (value) {
 	return isEmpty(value)
 		? this.createError({
 				path: this.path,
 				message: 'fill at least on filled',
-		  })
-		: true;
-});
+			})
+		: true
+})
 
 export const updatePostValidationSchema = object({
 	description: string().required('This field is required'),
 	img: string().transform(transformFunction),
-});
+})

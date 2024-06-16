@@ -1,10 +1,10 @@
-import { Avatar, Paper, Stack, styled } from '@mui/material';
-import './styles.css';
+import { Avatar, Paper, Stack, styled } from '@mui/material'
+import './styles.css'
 
 const ChatMsgPaper = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === 'dark' ? '#383838' : '#e4e6eb',
 	borderRadius: '16px',
-}));
+}))
 
 const TypingIndicator = ({ avatar }: { avatar?: string }) => (
 	<Stack direction='row' spacing={1} alignSelf='flex-start'>
@@ -20,6 +20,6 @@ const TypingIndicator = ({ avatar }: { avatar?: string }) => (
 			</div>
 		</ChatMsgPaper>
 	</Stack>
-);
+)
 
-export default TypingIndicator;
+export default TypingIndicator

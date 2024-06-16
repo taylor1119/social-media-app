@@ -1,7 +1,7 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions'
+import InfoRoundedIcon from '@mui/icons-material/InfoRounded'
+import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import {
 	alpha,
 	Avatar,
@@ -13,32 +13,32 @@ import {
 	Stack,
 	styled,
 	Typography,
-} from '@mui/material';
-import { IChatMessage } from 'shared';
-import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import {} from '../../common/interfaces';
-import useGetConversation from '../../hooks/useGetConversation';
-import useSendMessage from '../../hooks/useSendMessage';
-import { useTypingNotification } from '../../hooks/useTypingNotification';
+} from '@mui/material'
+import { IChatMessage } from 'shared'
+import { useEffect, useState } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import {} from '../../common/interfaces'
+import useGetConversation from '../../hooks/useGetConversation'
+import useSendMessage from '../../hooks/useSendMessage'
+import { useTypingNotification } from '../../hooks/useTypingNotification'
 import {
 	currentUserState,
 	friendDetailsOpenState,
 	selectedFriendState,
 	typingIndicatorMapState,
-} from '../../recoil/atoms';
-import TypingIndicator from '../Chat/TypingIndicator';
+} from '../../recoil/atoms'
+import TypingIndicator from '../Chat/TypingIndicator'
 
 const ChatMsgPaper = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === 'dark' ? '#383838' : '#e4e6eb',
 	borderRadius: '16px',
-}));
+}))
 
 const OwmChatMsgPaper = styled(Paper)(() => ({
 	backgroundColor: '#0084ff',
 	color: 'white',
 	borderRadius: '16px',
-}));
+}))
 
 const CustomInput = styled(InputBase)(({ theme }) => ({
 	position: 'relative',
@@ -53,12 +53,12 @@ const CustomInput = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
 		paddingInline: '10px',
 	},
-}));
+}))
 
 interface IChatMsgProps {
-	isOwn: boolean;
-	text: string;
-	avatar: string | undefined;
+	isOwn: boolean
+	text: string
+	avatar: string | undefined
 }
 
 const ChatMsg = ({ isOwn, text, avatar }: IChatMsgProps) => {
@@ -86,33 +86,36 @@ const ChatMsg = ({ isOwn, text, avatar }: IChatMsgProps) => {
 				<Typography variant='body2'>{text}</Typography>
 			</ChatMsgPaper>
 		</Stack>
-	);
-};
+	)
+}
 
 const ChatBox = () => {
-	const [messages, setMessages] = useState<IChatMessage[]>([]);
-	const typingIndicatorMap = useRecoilValue(typingIndicatorMapState);
-	const currentUser = useRecoilValue(currentUserState);
-	const selectedFriend = useRecoilValue(selectedFriendState);
-	const { data, isSuccess } = useGetConversation(selectedFriend?.id);
-	const { onSubmit, register } = useSendMessage(selectedFriend?.id);
+	const [messages, setMessages] = useState<IChatMessage[]>([])
+	const typingIndicatorMap = useRecoilValue(typingIndicatorMapState)
+	const currentUser = useRecoilValue(currentUserState)
+	const selectedFriend = useRecoilValue(selectedFriendState)
+	const { data, isSuccess } = useGetConversation(selectedFriend?.id)
+	const { onSubmit, register } = useSendMessage(selectedFriend?.id)
 
 	useEffect(() => {
-		if (isSuccess) setMessages(data);
-	}, [data, isSuccess]);
+		if (isSuccess) setMessages(data)
+	}, [data, isSuccess])
 
-	const setFriendDetailsOpen = useSetRecoilState(friendDetailsOpenState);
-	const handleOpenFriendDetails = () => setFriendDetailsOpen((prev) => !prev);
+	const setFriendDetailsOpen = useSetRecoilState(friendDetailsOpenState)
+	const handleOpenFriendDetails = () => setFriendDetailsOpen((prev) => !prev)
 
 	const { handleInputKeyDown, handleInputKeyUp } = useTypingNotification(
 		selectedFriend?.id ?? ''
-	);
+	)
 
 	return selectedFriend ? (
 		<Stack sx={{ flexGrow: 1 }}>
 			<Paper sx={{ p: '12px' }} elevation={0}>
 				<Stack direction='row' alignItems='center' spacing={2}>
-					<Avatar src={selectedFriend?.avatar} alt={selectedFriend?.userName} />
+					<Avatar
+						src={selectedFriend?.avatar}
+						alt={selectedFriend?.userName}
+					/>
 					<Typography sx={{ flexGrow: 1 }} variant='body1'>
 						{selectedFriend?.userName}
 					</Typography>
@@ -125,7 +128,11 @@ const ChatBox = () => {
 				component={Paper}
 				elevation={0}
 				spacing={1}
-				sx={{ p: '14px', overflowY: 'auto', height: 'calc(100vh - 194px)' }}
+				sx={{
+					p: '14px',
+					overflowY: 'auto',
+					height: 'calc(100vh - 194px)',
+				}}
 				direction='column-reverse'
 			>
 				{typingIndicatorMap.get(selectedFriend.id) && (
@@ -166,7 +173,13 @@ const ChatBox = () => {
 						{...register('text')}
 						endAdornment={
 							<InputAdornment position='end'>
-								<IconButton sx={{ height: '28px', width: '28px', mr: '4px' }}>
+								<IconButton
+									sx={{
+										height: '28px',
+										width: '28px',
+										mr: '4px',
+									}}
+								>
 									<EmojiEmotionsIcon color='primary' />
 								</IconButton>
 							</InputAdornment>
@@ -192,7 +205,7 @@ const ChatBox = () => {
 				Select or add a friend to chat with
 			</Typography>
 		</Container>
-	);
-};
+	)
+}
 
-export default ChatBox;
+export default ChatBox

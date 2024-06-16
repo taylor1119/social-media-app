@@ -1,22 +1,22 @@
-import { Grid } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import queryKeys from '../../constants/reactQueryKeys';
-import { useGetReceivedFriendRequests } from '../../hooks/friendRequestsHooks';
-import { useGetUsersById } from '../../hooks/usersHooks';
-import UserCard from './UserCard';
+import { Grid } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import queryKeys from '../../constants/reactQueryKeys'
+import { useGetReceivedFriendRequests } from '../../hooks/friendRequestsHooks'
+import { useGetUsersById } from '../../hooks/usersHooks'
+import UserCard from './UserCard'
 
 const ReceivedRequests = () => {
-	const { data: receivedFriendRequests } = useGetReceivedFriendRequests();
+	const { data: receivedFriendRequests } = useGetReceivedFriendRequests()
 	const { data: friendRequesters } = useGetUsersById(
 		receivedFriendRequests?.map((request) => request.requester),
 		queryKeys.friendRequesters
-	);
-	const requestsMap = new Map<string, string>();
+	)
+	const requestsMap = new Map<string, string>()
 	receivedFriendRequests?.forEach((friendRequest) => {
-		requestsMap.set(friendRequest.requester, friendRequest.id);
-	});
+		requestsMap.set(friendRequest.requester, friendRequest.id)
+	})
 
-	if (!receivedFriendRequests || !receivedFriendRequests.length) return null;
+	if (!receivedFriendRequests || !receivedFriendRequests.length) return null
 
 	return (
 		<>
@@ -35,13 +35,15 @@ const ReceivedRequests = () => {
 						<UserCard
 							cardType='received-request'
 							user={friendRequester}
-							requestId={requestsMap.get(friendRequester.id) ?? ''}
+							requestId={
+								requestsMap.get(friendRequester.id) ?? ''
+							}
 						/>
 					</Grid>
 				))}
 			</Grid>
 		</>
-	);
-};
+	)
+}
 
-export default ReceivedRequests;
+export default ReceivedRequests

@@ -1,15 +1,15 @@
-import MenuIcon from '@mui/icons-material/MenuRounded';
-import { Stack } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import { Link } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { leftSideBarOpenState } from '../../recoil/atoms';
-import UserSearch from './UserSearch';
+import MenuIcon from '@mui/icons-material/MenuRounded'
+import { Stack } from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import IconButton from '@mui/material/IconButton'
+import { Link } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { leftSideBarOpenState } from '../../recoil/atoms'
+import UserSearch from './UserSearch'
 
 const LeftSection = () => {
-	const setLeftSideBarOpen = useSetRecoilState(leftSideBarOpenState);
-	const handleOpenSideBar = () => setLeftSideBarOpen((prev) => !prev);
+	const setLeftSideBarOpen = useSetRecoilState(leftSideBarOpenState)
+	const handleOpenSideBar = () => setLeftSideBarOpen((prev) => !prev)
 
 	return (
 		<Stack direction='row' alignItems='center' spacing={1} width='300px'>
@@ -25,13 +25,16 @@ const LeftSection = () => {
 
 			<UserSearch />
 
-			<IconButton sx={{ display: { lg: 'none' } }} onClick={handleOpenSideBar}>
+			<IconButton
+				sx={{ display: { lg: 'none' } }}
+				onClick={handleOpenSideBar}
+			>
 				<Avatar>
 					<MenuIcon />
 				</Avatar>
 			</IconButton>
 		</Stack>
-	);
-};
+	)
+}
 
-export default LeftSection;
+export default LeftSection

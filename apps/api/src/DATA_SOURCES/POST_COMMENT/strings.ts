@@ -1,1 +1,1 @@
-export const POST_COMMENT_INPUT = 'postCommentInput';
+export const POST_COMMENT_INPUT = 'postCommentInput'

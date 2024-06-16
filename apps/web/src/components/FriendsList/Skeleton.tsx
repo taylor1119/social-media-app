@@ -5,7 +5,7 @@ import {
 	ListItemAvatar,
 	ListItemText,
 	Skeleton,
-} from '@mui/material';
+} from '@mui/material'
 
 const FriendsListSkeleton = () => (
 	<Drawer
@@ -49,6 +49,6 @@ const FriendsListSkeleton = () => (
 			))}
 		</List>
 	</Drawer>
-);
+)
 
-export default FriendsListSkeleton;
+export default FriendsListSkeleton

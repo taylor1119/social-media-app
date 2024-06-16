@@ -1,4 +1,4 @@
-import { TPaginatedPostsType } from '../common/types';
+import { TPaginatedPostsType } from '../common/types'
 
 const queryKeys = {
 	friends: (friendsOfId?: string) => ['users', 'friends', friendsOfId],
@@ -19,6 +19,6 @@ const queryKeys = {
 	friendRequestReceivers: ['users', 'friend-request-receiver'],
 	friendRequesters: ['users', 'friend-requesters'],
 	searchUsers: (searchTerm?: string) => ['users', 'search', searchTerm],
-};
+}
 
-export default queryKeys;
+export default queryKeys

@@ -1,6 +1,6 @@
-import { useQuery } from 'react-query';
-import queryKeys from '../constants/reactQueryKeys';
-import { getPostCommentQuery } from '../queries/postComments';
+import { useQuery } from 'react-query'
+import queryKeys from '../constants/reactQueryKeys'
+import { getPostCommentQuery } from '../queries/postComments'
 
 const useGetPostComments = (
 	commentIds: string[] = [],
@@ -11,7 +11,7 @@ const useGetPostComments = (
 		queryKeys.postComments(postId),
 		() => getPostCommentQuery(commentIds),
 		{ enabled: Boolean(commentIds && commentIds.length && enabled) }
-	);
-};
+	)
+}
 
-export default useGetPostComments;
+export default useGetPostComments

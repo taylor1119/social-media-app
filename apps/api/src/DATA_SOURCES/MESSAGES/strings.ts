@@ -1,1 +1,1 @@
-export const MESSAGE_INPUT = 'messageInput';
+export const MESSAGE_INPUT = 'messageInput'

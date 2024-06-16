@@ -1,8 +1,6 @@
 {
 	"$schema": "https://turbo.build/schema.json",
-	"globalDependencies": ["**/.env.*local"],
-	"globalEnv": ["PORT"],
-	"pipeline": {
+	"tasks": {
 		"build": {
 			"outputs": ["dist/**"],
 			"dependsOn": ["^build"]
@@ -23,7 +21,7 @@
 		"clean": {
 			"cache": false
 		},
-		"//#format": { "outputs": [".prettier-cache"] },
+		"//#format": { "outputs": [".prettiercache"] },
 		"//#spell-check": { "outputs": [".cspellcache"] }
 	}
 }

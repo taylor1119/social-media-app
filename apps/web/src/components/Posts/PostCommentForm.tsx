@@ -1,30 +1,30 @@
-import { Stack, TextField } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { useAddPostComment } from '../../hooks/postCommentsHooks';
-import { currentUserState } from '../../recoil/atoms';
+import { Stack, TextField } from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRecoilValue } from 'recoil'
+import { useAddPostComment } from '../../hooks/postCommentsHooks'
+import { currentUserState } from '../../recoil/atoms'
 
 const PostCommentForm = ({ postId }: { postId: string }) => {
-	const currentUser = useRecoilValue(currentUserState);
+	const currentUser = useRecoilValue(currentUserState)
 
-	const { handleSubmit, register, reset } = useForm<{ text: string }>();
+	const { handleSubmit, register, reset } = useForm<{ text: string }>()
 
-	const isSubmitting = postId.includes('placeholder-new-post-id');
+	const isSubmitting = postId.includes('placeholder-new-post-id')
 
 	const {
 		mutate: addPostMutation,
 		isSuccess,
 		isLoading,
-	} = useAddPostComment(postId);
+	} = useAddPostComment(postId)
 
 	const onSubmit = (postComment: { text: string }) =>
-		addPostMutation(postComment);
+		addPostMutation(postComment)
 
 	useEffect(() => {
-		if (isSuccess) reset();
-	}, [isSuccess, reset]);
+		if (isSuccess) reset()
+	}, [isSuccess, reset])
 
 	return (
 		<Stack
@@ -37,7 +37,9 @@ const PostCommentForm = ({ postId }: { postId: string }) => {
 			<Avatar src={currentUser?.avatar} alt={currentUser?.userName} />
 			<TextField
 				autoComplete='off'
-				placeholder={isSubmitting ? 'Submitting post...' : 'Write a comment...'}
+				placeholder={
+					isSubmitting ? 'Submitting post...' : 'Write a comment...'
+				}
 				size='small'
 				fullWidth
 				helperText='Press Enter to post.'
@@ -45,7 +47,7 @@ const PostCommentForm = ({ postId }: { postId: string }) => {
 				{...register('text')}
 			/>
 		</Stack>
-	);
-};
+	)
+}
 
-export default PostCommentForm;
+export default PostCommentForm

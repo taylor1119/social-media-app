@@ -4,32 +4,35 @@ import {
 	List,
 	ListItemAvatar,
 	ListItemButton,
-} from '@mui/material';
-import ListItemText from '@mui/material/ListItemText';
-import { useSetRecoilState } from 'recoil';
-import { TUiUser } from '../../common/types';
+} from '@mui/material'
+import ListItemText from '@mui/material/ListItemText'
+import { useSetRecoilState } from 'recoil'
+import { TUiUser } from '../../common/types'
 import {
 	useGetCurrentUserFriends,
 	useGetOnlineUsersIds,
-} from '../../hooks/usersHooks';
-import { selectedFriendState } from '../../recoil/atoms';
-import ConditionalWrapper from '../ConditionalWrapper';
-import OnlineBadgeWrapper from '../OnlineBadgeWrapper';
+} from '../../hooks/usersHooks'
+import { selectedFriendState } from '../../recoil/atoms'
+import ConditionalWrapper from '../ConditionalWrapper'
+import OnlineBadgeWrapper from '../OnlineBadgeWrapper'
 
 const FriendsListItem = ({
 	friend,
 	isOnline,
 }: {
-	friend: TUiUser;
-	isOnline: boolean;
+	friend: TUiUser
+	isOnline: boolean
 }) => {
-	const setSelectedFriend = useSetRecoilState(selectedFriendState);
-	const handleSelectFriend = () => setSelectedFriend(friend);
+	const setSelectedFriend = useSetRecoilState(selectedFriendState)
+	const handleSelectFriend = () => setSelectedFriend(friend)
 
 	return (
 		<ListItemButton onClick={handleSelectFriend}>
 			<ListItemAvatar>
-				<ConditionalWrapper condition={isOnline} wrapper={OnlineBadgeWrapper}>
+				<ConditionalWrapper
+					condition={isOnline}
+					wrapper={OnlineBadgeWrapper}
+				>
 					<Avatar
 						src={friend.avatar}
 						alt={friend.userName}
@@ -42,12 +45,12 @@ const FriendsListItem = ({
 				primary={friend.userName}
 			/>
 		</ListItemButton>
-	);
-};
+	)
+}
 
 const FriendsList = () => {
-	const { data: friends } = useGetCurrentUserFriends();
-	const { data: onlineUsersIds } = useGetOnlineUsersIds();
+	const { data: friends } = useGetCurrentUserFriends()
+	const { data: onlineUsersIds } = useGetOnlineUsersIds()
 
 	return (
 		<Drawer
@@ -87,7 +90,7 @@ const FriendsList = () => {
 				))}
 			</List>
 		</Drawer>
-	);
-};
+	)
+}
 
-export default FriendsList;
+export default FriendsList

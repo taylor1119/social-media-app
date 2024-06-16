@@ -15,4 +15,4 @@ public/dist
 # cache
 .cspellcache
 .eslintcache
-.prettier-cache
+.prettiercache

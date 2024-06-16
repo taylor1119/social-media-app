@@ -1,1 +1,1 @@
-export const DB_DOC_IDS = 'dBDocIds';
+export const DB_DOC_IDS = 'dBDocIds'

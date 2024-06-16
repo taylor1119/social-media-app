@@ -1,5 +1,5 @@
-import { model, Schema } from 'mongoose';
-import { IPost } from 'shared';
+import { model, Schema } from 'mongoose'
+import { IPost } from 'shared'
 
 const UserSchema = new Schema<IPost>({
 	author: {
@@ -12,6 +12,6 @@ const UserSchema = new Schema<IPost>({
 	likes: [String],
 	dislikes: [String],
 	comments: [String],
-});
+})
 
-export default model('Post', UserSchema);
+export default model('Post', UserSchema)

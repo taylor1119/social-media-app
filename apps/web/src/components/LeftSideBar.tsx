@@ -1,27 +1,31 @@
-import FavoriteIcon from '@mui/icons-material/FavoriteRounded';
-import HomeIcon from '@mui/icons-material/HomeRounded';
-import PeopleIcon from '@mui/icons-material/PeopleRounded';
-import { ListItemButton } from '@mui/material';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { leftSideBarOpenState } from '../recoil/atoms';
+import FavoriteIcon from '@mui/icons-material/FavoriteRounded'
+import HomeIcon from '@mui/icons-material/HomeRounded'
+import PeopleIcon from '@mui/icons-material/PeopleRounded'
+import { ListItemButton } from '@mui/material'
+import Drawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+import { leftSideBarOpenState } from '../recoil/atoms'
 
 const LeftSideBar = () => {
-	const [sideBarOpen, setSideBarOpen] = useRecoilState(leftSideBarOpenState);
+	const [sideBarOpen, setSideBarOpen] = useRecoilState(leftSideBarOpenState)
 
 	const handleDrawerToggle = () => {
-		setSideBarOpen(!sideBarOpen);
-	};
+		setSideBarOpen(!sideBarOpen)
+	}
 
-	const { pathname } = useLocation();
+	const { pathname } = useLocation()
 
 	const drawer = (
 		<List sx={{ mx: '8px', mt: '76px' }}>
-			<ListItemButton component={RouterLink} to='/' selected={pathname === '/'}>
+			<ListItemButton
+				component={RouterLink}
+				to='/'
+				selected={pathname === '/'}
+			>
 				<ListItemIcon>
 					<HomeIcon />
 				</ListItemIcon>
@@ -48,7 +52,7 @@ const LeftSideBar = () => {
 				<ListItemText>Friends</ListItemText>
 			</ListItemButton>
 		</List>
-	);
+	)
 
 	return (
 		<>
@@ -86,7 +90,7 @@ const LeftSideBar = () => {
 				{drawer}
 			</Drawer>
 		</>
-	);
-};
+	)
+}
 
-export default LeftSideBar;
+export default LeftSideBar

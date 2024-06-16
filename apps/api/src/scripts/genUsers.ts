@@ -1,42 +1,40 @@
-import { faker } from '@faker-js/faker';
-import chalk from 'chalk';
-import { IUser } from 'shared';
-import UsersModel from '../DATA_SOURCES/USER/model';
-
-const getMail = (idx: number) => {
-	if (idx === 0) return 'test1@gmail.com';
-	else if (idx === 1) return 'test2@gmail.com';
-	return faker.internet.email();
-};
+import { faker } from '@faker-js/faker'
+import chalk from 'chalk'
+import { IUser } from 'shared'
+import UsersModel from '../DATA_SOURCES/USER/model'
 
 const genUsers = async (usersNumber: number) => {
-	console.log(chalk.yellow('Creating Users...'));
-	const users: Omit<IUser, 'id'>[] = [];
+	console.log(chalk.yellow('Creating Users...'))
+	const users: Omit<IUser, 'id'>[] = []
 	for (let idx = 0; idx < usersNumber; idx++) {
 		users.push({
-			email: getMail(idx),
+			email: faker.internet.email(),
 			password: 'password',
 			userName: faker.internet.userName(),
-			avatar: faker.internet.avatar(),
-			cover: faker.image.business(640, 480, true),
+			avatar: faker.image.avatarGitHub(),
+			cover: faker.image.urlLoremFlickr({
+				category: 'abstract',
+				width: 1280,
+				height: 720,
+			}),
 			friends: [],
 			dislikedPosts: [],
 			likedPosts: [],
-			createdAt: faker.date.between('2015', '2022'),
-			updatedAt: faker.date.between('2015', '2022'),
+			createdAt: faker.date.between({ from: '2015', to: '2023' }),
+			updatedAt: faker.date.between({ from: '2015', to: '2023' }),
 			intro: {
-				address: faker.address.city(),
+				address: faker.location.streetAddress(),
 				bio: faker.lorem.paragraph(),
-				from: faker.address.city(),
+				from: faker.location.city(),
 				relationshipStatus: 'Single',
 				studiedAt: faker.company.name(),
 				studiesAt: faker.company.name(),
 				work: faker.company.name(),
 			},
-		});
+		})
 	}
 
-	return await UsersModel.create(users);
-};
+	return await UsersModel.create(users)
+}
 
-export default genUsers;
+export default genUsers

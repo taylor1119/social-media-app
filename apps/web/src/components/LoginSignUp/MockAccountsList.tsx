@@ -8,16 +8,16 @@ import {
 	Modal,
 	Paper,
 	Typography,
-} from '@mui/material';
-import { UseMutateFunction, useQuery } from 'react-query';
-import { TLoginInput, TMockAccount } from 'shared';
-import { getAccountsQuery } from '../../queries/users';
-import Loading from '../Loading';
+} from '@mui/material'
+import { UseMutateFunction, useQuery } from 'react-query'
+import { TLoginInput, TMockAccount } from 'shared'
+import { getAccountsQuery } from '../../queries/users'
+import Loading from '../Loading'
 
 interface IMockAccountsListProps {
-	openMockAccountsList: boolean;
-	handleCloseOpenMockAccountsList: () => void;
-	mutate: UseMutateFunction<unknown, unknown, TLoginInput>;
+	openMockAccountsList: boolean
+	handleCloseOpenMockAccountsList: () => void
+	mutate: UseMutateFunction<unknown, unknown, TLoginInput>
 }
 
 const MockAccountsList = ({
@@ -25,15 +25,19 @@ const MockAccountsList = ({
 	openMockAccountsList,
 	mutate,
 }: IMockAccountsListProps) => {
-	const { data: accounts, isLoading } = useQuery('accounts', getAccountsQuery, {
-		suspense: false,
-	});
+	const { data: accounts, isLoading } = useQuery(
+		'accounts',
+		getAccountsQuery,
+		{
+			suspense: false,
+		}
+	)
 	const handleSelectAccount =
 		({ email }: TMockAccount) =>
 		() => {
-			mutate({ email, password: 'password' });
-			handleCloseOpenMockAccountsList();
-		};
+			mutate({ email, password: 'password' })
+			handleCloseOpenMockAccountsList()
+		}
 
 	return (
 		<Modal
@@ -69,7 +73,10 @@ const MockAccountsList = ({
 								onClick={handleSelectAccount(account)}
 							>
 								<ListItemAvatar>
-									<Avatar src={account.avatar} alt={account.userName} />
+									<Avatar
+										src={account.avatar}
+										alt={account.userName}
+									/>
 								</ListItemAvatar>
 								<ListItemText
 									primary={account.userName}
@@ -81,7 +88,7 @@ const MockAccountsList = ({
 				)}
 			</Paper>
 		</Modal>
-	);
-};
+	)
+}
 
-export default MockAccountsList;
+export default MockAccountsList

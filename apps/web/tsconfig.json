@@ -1,5 +1,5 @@
 {
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", ".eslintrc.cjs"],
 	"extends": "tsconfig/vite.json",
 	"compilerOptions": {
 		"rootDir": "src",

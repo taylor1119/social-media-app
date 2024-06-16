@@ -1,5 +1,5 @@
-import { ArrowBack } from '@mui/icons-material';
-import SearchIcon from '@mui/icons-material/Search';
+import { ArrowBack } from '@mui/icons-material'
+import SearchIcon from '@mui/icons-material/Search'
 import {
 	Avatar,
 	IconButton,
@@ -7,21 +7,21 @@ import {
 	ListItemButton,
 	ListItemText,
 	Stack,
-} from '@mui/material';
-import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import InputBase from '@mui/material/InputBase';
-import Popper from '@mui/material/Popper';
-import { alpha, styled } from '@mui/material/styles';
-import { debounce } from 'lodash';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSearchUsersByUserName } from '../../hooks/usersHooks';
+} from '@mui/material'
+import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete'
+import ClickAwayListener from '@mui/material/ClickAwayListener'
+import InputBase from '@mui/material/InputBase'
+import Popper from '@mui/material/Popper'
+import { alpha, styled } from '@mui/material/styles'
+import { debounce } from 'lodash'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSearchUsersByUserName } from '../../hooks/usersHooks'
 
 interface PopperComponentProps {
-	anchorEl?: unknown;
-	disablePortal?: boolean;
-	open: boolean;
+	anchorEl?: unknown
+	disablePortal?: boolean
+	open: boolean
 }
 
 const StyledAutocompletePopper = styled('div')(({ theme }) => ({
@@ -33,10 +33,11 @@ const StyledAutocompletePopper = styled('div')(({ theme }) => ({
 		background: theme.palette.mode === 'light' ? '#fff' : '#272727',
 
 		[`& .${autocompleteClasses.listbox}`]: {
-			backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#272727',
+			backgroundColor:
+				theme.palette.mode === 'light' ? '#fff' : '#272727',
 		},
 	},
-}));
+}))
 
 const PopperComponent = ({
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -46,7 +47,7 @@ const PopperComponent = ({
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	open,
 	...other
-}: PopperComponentProps) => <StyledAutocompletePopper {...other} />;
+}: PopperComponentProps) => <StyledAutocompletePopper {...other} />
 
 const StyledPopper = styled(Popper)(({ theme }) => ({
 	display: 'flex',
@@ -58,7 +59,7 @@ const StyledPopper = styled(Popper)(({ theme }) => ({
 	width: '345px',
 	zIndex: theme.zIndex.modal,
 	backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#272727',
-}));
+}))
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -68,7 +69,7 @@ const Search = styled('div')(({ theme }) => ({
 	'&:hover': {
 		backgroundColor: alpha(theme.palette.action.active, 0.15),
 	},
-}));
+}))
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
 	padding: theme.spacing(0, 2),
@@ -78,7 +79,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-}));
+}))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	color: 'inherit',
@@ -87,35 +88,35 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 		// vertical padding + font size from searchIcon
 		paddingLeft: `calc(1em + ${theme.spacing(4)})`,
 	},
-}));
+}))
 
 const UserSearch = () => {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(false)
 
-	const handleClose = () => setOpen(false);
-	const handleClick = () => setOpen((prev) => !prev);
+	const handleClose = () => setOpen(false)
+	const handleClick = () => setOpen((prev) => !prev)
 
-	const id = open ? 'search-users' : undefined;
+	const id = open ? 'search-users' : undefined
 
-	const [searchTerm, setSearchTerm] = useState('');
-	const [delayedSearchTerm, setDelayedSearchTerm] = useState(searchTerm);
+	const [searchTerm, setSearchTerm] = useState('')
+	const [delayedSearchTerm, setDelayedSearchTerm] = useState(searchTerm)
 
 	const debounceSearch = debounce(
 		() => setDelayedSearchTerm(searchTerm),
 		1000,
 		{ leading: false, trailing: true }
-	);
+	)
 
 	useEffect(() => {
-		debounceSearch();
-		return () => debounceSearch.cancel();
-	}, [debounceSearch, searchTerm]);
+		debounceSearch()
+		return () => debounceSearch.cancel()
+	}, [debounceSearch, searchTerm])
 
 	const { data: searchResults, isLoading } =
-		useSearchUsersByUserName(delayedSearchTerm);
+		useSearchUsersByUserName(delayedSearchTerm)
 
 	const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
-		setSearchTerm(e.target.value);
+		setSearchTerm(e.target.value)
 
 	return (
 		<>
@@ -148,7 +149,7 @@ const UserSearch = () => {
 						loading={isLoading}
 						onClose={(event, reason) => {
 							if (reason === 'escape') {
-								handleClose();
+								handleClose()
 							}
 						}}
 						PopperComponent={PopperComponent}
@@ -192,7 +193,10 @@ const UserSearch = () => {
 								onClick={() => setSearchTerm('')}
 							>
 								<ListItemAvatar>
-									<Avatar src={user.avatar} alt={user.userName} />
+									<Avatar
+										src={user.avatar}
+										alt={user.userName}
+									/>
 								</ListItemAvatar>
 								<ListItemText primary={user.userName} />
 							</ListItemButton>
@@ -201,7 +205,7 @@ const UserSearch = () => {
 				</ClickAwayListener>
 			</StyledPopper>
 		</>
-	);
-};
+	)
+}
 
-export default UserSearch;
+export default UserSearch

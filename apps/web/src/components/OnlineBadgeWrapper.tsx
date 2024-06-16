@@ -1,4 +1,4 @@
-import { Badge, styled } from '@mui/material';
+import { Badge, styled } from '@mui/material'
 
 const OnlineBadge = styled(Badge)(({ theme }) => ({
 	'& .MuiBadge-badge': {
@@ -30,7 +30,7 @@ const OnlineBadge = styled(Badge)(({ theme }) => ({
 			opacity: 0,
 		},
 	},
-}));
+}))
 
 const OnlineBadgeWrapper = ({ children }: { children?: React.ReactNode }) => (
 	<OnlineBadge
@@ -40,6 +40,6 @@ const OnlineBadgeWrapper = ({ children }: { children?: React.ReactNode }) => (
 	>
 		{children}
 	</OnlineBadge>
-);
+)
 
-export default OnlineBadgeWrapper;
+export default OnlineBadgeWrapper

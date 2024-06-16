@@ -1,8 +1,8 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import CloseIcon from '@mui/icons-material/Close';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import RemoveIcon from '@mui/icons-material/Remove';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import CloseIcon from '@mui/icons-material/Close'
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions'
+import RemoveIcon from '@mui/icons-material/Remove'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import {
 	alpha,
 	Avatar,
@@ -13,23 +13,23 @@ import {
 	InputBase,
 	Stack,
 	styled,
-} from '@mui/material';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import { Link as RouterLink } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { TUiUser } from '../../../common/types';
-import useChatBox from '../../../hooks/useChatBox';
-import useGetConversation from '../../../hooks/useGetConversation';
-import useSendMessage from '../../../hooks/useSendMessage';
-import { useTypingNotification } from '../../../hooks/useTypingNotification';
+} from '@mui/material'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import { Link as RouterLink } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { TUiUser } from '../../../common/types'
+import useChatBox from '../../../hooks/useChatBox'
+import useGetConversation from '../../../hooks/useGetConversation'
+import useSendMessage from '../../../hooks/useSendMessage'
+import { useTypingNotification } from '../../../hooks/useTypingNotification'
 import {
 	currentUserState,
 	typingIndicatorMapState,
-} from '../../../recoil/atoms';
-import ChatMessage from '../ChatMessage';
-import TypingIndicator from '../TypingIndicator';
+} from '../../../recoil/atoms'
+import ChatMessage from '../ChatMessage'
+import TypingIndicator from '../TypingIndicator'
 
 const CustomInput = styled(InputBase)(({ theme }) => ({
 	position: 'relative',
@@ -43,17 +43,17 @@ const CustomInput = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
 		paddingInline: '10px',
 	},
-}));
+}))
 
 const ChatBox = ({ user }: { user: TUiUser }) => {
-	const currentUser = useRecoilValue(currentUserState);
-	const { data: chatMessages } = useGetConversation(user.id);
-	const { onMinimize, onClose } = useChatBox(user);
-	const { onSubmit, register } = useSendMessage(user.id);
+	const currentUser = useRecoilValue(currentUserState)
+	const { data: chatMessages } = useGetConversation(user.id)
+	const { onMinimize, onClose } = useChatBox(user)
+	const { onSubmit, register } = useSendMessage(user.id)
 	const { handleInputKeyDown, handleInputKeyUp } = useTypingNotification(
 		user.id
-	);
-	const typingIndicatorMap = useRecoilValue(typingIndicatorMapState);
+	)
+	const typingIndicatorMap = useRecoilValue(typingIndicatorMapState)
 
 	return (
 		<Card
@@ -62,7 +62,11 @@ const ChatBox = ({ user }: { user: TUiUser }) => {
 				height: 465,
 			}}
 		>
-			<Stack direction='row' justifyContent='space-between' alignItems='center'>
+			<Stack
+				direction='row'
+				justifyContent='space-between'
+				alignItems='center'
+			>
 				<Button
 					component={RouterLink}
 					to={'/profile/' + user.id}
@@ -141,7 +145,13 @@ const ChatBox = ({ user }: { user: TUiUser }) => {
 						{...register('text')}
 						endAdornment={
 							<InputAdornment position='end'>
-								<IconButton sx={{ height: '28px', width: '28px', mr: '4px' }}>
+								<IconButton
+									sx={{
+										height: '28px',
+										width: '28px',
+										mr: '4px',
+									}}
+								>
 									<EmojiEmotionsIcon color='primary' />
 								</IconButton>
 							</InputAdornment>
@@ -153,7 +163,7 @@ const ChatBox = ({ user }: { user: TUiUser }) => {
 				</IconButton>
 			</CardActions>
 		</Card>
-	);
-};
+	)
+}
 
-export default ChatBox;
+export default ChatBox

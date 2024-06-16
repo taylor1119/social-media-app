@@ -8,8 +8,8 @@ Social Media App is a fullstack web app with instant messing, posts and friends 
 
 **Live preview:**
 
-- [Railway](https://social-media-app-production.up.railway.app)
-- [Render](https://social-media-app-eoga.onrender.com)
+-   [Railway](https://social-media-app-production.up.railway.app)
+-   [Render](https://social-media-app-eoga.onrender.com)
 
 ## Installation
 

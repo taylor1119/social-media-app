@@ -3,10 +3,10 @@ import {
 	House as HouseIcon,
 	LocationOn as LocationOnIcon,
 	Person as PersonIcon,
-} from '@mui/icons-material';
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import SchoolIcon from '@mui/icons-material/School';
-import WatchLaterIcon from '@mui/icons-material/WatchLater';
+} from '@mui/icons-material'
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
+import SchoolIcon from '@mui/icons-material/School'
+import WatchLaterIcon from '@mui/icons-material/WatchLater'
 import {
 	Button,
 	ImageList,
@@ -15,28 +15,28 @@ import {
 	Paper,
 	Stack,
 	Typography,
-} from '@mui/material';
-import { debounce } from 'lodash';
-import { useCallback, useRef, useState } from 'react';
-import { InfiniteData } from 'react-query';
-import { Link, Link as RouterLink, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { queryClient } from '../..';
-import { TPaginatedPost } from '../../common/types';
-import queryKeys from '../../constants/reactQueryKeys';
-import { useGetUserById, useGetUsersById } from '../../hooks/usersHooks';
-import { currentUserState } from '../../recoil/atoms';
+} from '@mui/material'
+import { debounce } from 'lodash'
+import { useCallback, useRef, useState } from 'react'
+import { InfiniteData } from 'react-query'
+import { Link, Link as RouterLink, useParams } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { queryClient } from '../..'
+import { TPaginatedPost } from '../../common/types'
+import queryKeys from '../../constants/reactQueryKeys'
+import { useGetUserById, useGetUsersById } from '../../hooks/usersHooks'
+import { currentUserState } from '../../recoil/atoms'
 
 const LeftSection = () => {
-	const { userId } = useParams();
-	const currentUser = useRecoilValue(currentUserState);
-	const { data: user } = useGetUserById(userId);
+	const { userId } = useParams()
+	const currentUser = useRecoilValue(currentUserState)
+	const { data: user } = useGetUserById(userId)
 	const { data: friends } = useGetUsersById(
 		user?.friends,
 		queryKeys.friends(userId)
-	);
+	)
 
-	const postsWithImages: TPaginatedPost[] = [];
+	const postsWithImages: TPaginatedPost[] = []
 	queryClient
 		.getQueryData<InfiniteData<TPaginatedPost>>(
 			queryKeys.posts('timeline', userId)
@@ -44,28 +44,31 @@ const LeftSection = () => {
 		?.pages.flat()
 		.every((post, idx) =>
 			post.img && idx < 9 ? postsWithImages.push(post) : false
-		);
+		)
 
-	const [top, setTop] = useState(0);
-	const containerRef = useRef<HTMLDivElement>(null);
+	const [top, setTop] = useState(0)
+	const containerRef = useRef<HTMLDivElement>(null)
 
 	useCallback(() => {
-		const containerElement = containerRef.current;
+		const containerElement = containerRef.current
 		const debouncedSetTop = debounce(
-			() => setTop(containerElement ? containerElement.clientHeight + 16 : 0),
+			() =>
+				setTop(
+					containerElement ? containerElement.clientHeight + 16 : 0
+				),
 			100
-		);
+		)
 
-		const resizeObserver = new ResizeObserver(debouncedSetTop);
-		if (containerElement) resizeObserver.observe(containerElement);
+		const resizeObserver = new ResizeObserver(debouncedSetTop)
+		if (containerElement) resizeObserver.observe(containerElement)
 
 		return () => {
-			resizeObserver.disconnect();
-			debouncedSetTop.cancel();
-		};
-	}, [])();
+			resizeObserver.disconnect()
+			debouncedSetTop.cancel()
+		}
+	}, [])()
 
-	if (!user) return null;
+	if (!user) return null
 
 	return (
 		<Stack
@@ -84,7 +87,11 @@ const LeftSection = () => {
 				}}
 			>
 				<Stack spacing={2.5}>
-					<Stack direction='row' spacing={1} justifyContent='space-between'>
+					<Stack
+						direction='row'
+						spacing={1}
+						justifyContent='space-between'
+					>
 						<Typography variant='h5' sx={{ fontWeight: 'bold' }}>
 							Intro
 						</Typography>
@@ -102,7 +109,9 @@ const LeftSection = () => {
 					{user.intro?.bio && (
 						<Stack direction='row' spacing={1}>
 							<PersonIcon />
-							<Typography variant='body1'>Bio: {user.intro?.bio}</Typography>
+							<Typography variant='body1'>
+								Bio: {user.intro?.bio}
+							</Typography>
 						</Stack>
 					)}
 					{user.intro?.work && (
@@ -132,7 +141,9 @@ const LeftSection = () => {
 					{user.intro?.from && (
 						<Stack direction='row' spacing={1} alignItems='center'>
 							<LocationOnIcon />
-							<Typography variant='body1'>From {user.intro?.from}</Typography>
+							<Typography variant='body1'>
+								From {user.intro?.from}
+							</Typography>
 						</Stack>
 					)}
 					{user.intro?.address && (
@@ -155,17 +166,24 @@ const LeftSection = () => {
 						<WatchLaterIcon />
 						<Typography variant='body1'>
 							Joined{' '}
-							{new Date(user.createdAt).toLocaleDateString('en-gb', {
-								year: 'numeric',
-								month: 'long',
-							})}
+							{new Date(user.createdAt).toLocaleDateString(
+								'en-gb',
+								{
+									year: 'numeric',
+									month: 'long',
+								}
+							)}
 						</Typography>
 					</Stack>
 				</Stack>
 			</Paper>
 
 			<Paper sx={{ p: '16px' }}>
-				<Stack direction='row' spacing={1} justifyContent='space-between'>
+				<Stack
+					direction='row'
+					spacing={1}
+					justifyContent='space-between'
+				>
 					<Typography variant='h5' sx={{ fontWeight: 'bold' }}>
 						Photos
 					</Typography>
@@ -197,7 +215,11 @@ const LeftSection = () => {
 			</Paper>
 
 			<Paper sx={{ p: '16px' }}>
-				<Stack direction='row' spacing={1} justifyContent='space-between'>
+				<Stack
+					direction='row'
+					spacing={1}
+					justifyContent='space-between'
+				>
 					<Typography variant='h5' sx={{ fontWeight: 'bold' }}>
 						Friends
 					</Typography>
@@ -229,13 +251,16 @@ const LeftSection = () => {
 								loading='lazy'
 								style={{ borderRadius: '8px' }}
 							/>
-							<ImageListItemBar title={friend.userName} position='below' />
+							<ImageListItemBar
+								title={friend.userName}
+								position='below'
+							/>
 						</ImageListItem>
 					)) ?? <></>}
 				</ImageList>
 			</Paper>
 		</Stack>
-	);
-};
+	)
+}
 
-export default LeftSection;
+export default LeftSection

@@ -1,34 +1,34 @@
-import { Avatar, Button, Modal, Paper, Tooltip } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { Snapshot, useGotoRecoilSnapshot, useRecoilSnapshot } from 'recoil';
+import { Avatar, Button, Modal, Paper, Tooltip } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { Snapshot, useGotoRecoilSnapshot, useRecoilSnapshot } from 'recoil'
 
 function RecoilTimeTravelObserver() {
-	const [snapshots, setSnapshots] = useState<Snapshot[]>([]);
-	const snapshot = useRecoilSnapshot();
-	const gotoSnapshot = useGotoRecoilSnapshot();
-	const release = snapshot.retain();
+	const [snapshots, setSnapshots] = useState<Snapshot[]>([])
+	const snapshot = useRecoilSnapshot()
+	const gotoSnapshot = useGotoRecoilSnapshot()
+	const release = snapshot.retain()
 
 	useEffect(() => {
 		if (snapshots.every((s) => s.getID() !== snapshot.getID())) {
 			try {
-				setSnapshots((prevSnapshots) => [...prevSnapshots, snapshot]);
+				setSnapshots((prevSnapshots) => [...prevSnapshots, snapshot])
 			} finally {
-				release();
+				release()
 			}
 		}
-	}, [release, snapshot, snapshots]);
+	}, [release, snapshot, snapshots])
 
 	const handleGotoSnapshot = (snapshot: Snapshot) => () => {
 		try {
-			gotoSnapshot(snapshot);
+			gotoSnapshot(snapshot)
 		} finally {
-			release();
+			release()
 		}
-	};
+	}
 
-	const [openSignUpForm, setOpenSignUpForm] = useState(false);
-	const handleOpenSignUpForm = () => setOpenSignUpForm(true);
-	const handleCloseSignUpForm = () => setOpenSignUpForm(false);
+	const [openSignUpForm, setOpenSignUpForm] = useState(false)
+	const handleOpenSignUpForm = () => setOpenSignUpForm(true)
+	const handleCloseSignUpForm = () => setOpenSignUpForm(false)
 
 	return (
 		<>
@@ -81,7 +81,7 @@ function RecoilTimeTravelObserver() {
 				</Paper>
 			</Modal>
 		</>
-	);
+	)
 }
 
-export default RecoilTimeTravelObserver;
+export default RecoilTimeTravelObserver

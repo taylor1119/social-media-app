@@ -5,9 +5,9 @@
 	"license": "MIT",
 	"main": "index.js",
 	"dependencies": {
-		"eslint-config-turbo": "^1.8.6",
-		"@typescript-eslint/eslint-plugin": "^5.56.0",
-		"@typescript-eslint/parser": "^5.56.0"
+		"@typescript-eslint/eslint-plugin": "^7.13.0",
+		"@typescript-eslint/parser": "^7.13.0",
+		"eslint-config-turbo": "^2.0.4"
 	},
 	"publishConfig": {
 		"access": "public"

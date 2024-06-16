@@ -1,9 +1,9 @@
-import { lazy, Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-import Loading from '../Loading';
-import TopBar from '../TopBar';
+import { lazy, Suspense } from 'react'
+import { Outlet } from 'react-router-dom'
+import Loading from '../Loading'
+import TopBar from '../TopBar'
 
-const Chat = lazy(() => import('../Chat'));
+const Chat = lazy(() => import('../Chat'))
 
 const Main = () => (
 	<>
@@ -13,6 +13,6 @@ const Main = () => (
 		</Suspense>
 		<Chat />
 	</>
-);
+)
 
-export default Main;
+export default Main

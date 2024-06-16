@@ -1,19 +1,19 @@
-import { Grid } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import queryKeys from '../../constants/reactQueryKeys';
-import { useGetSentFriendRequests } from '../../hooks/friendRequestsHooks';
-import { useGetUsersById } from '../../hooks/usersHooks';
-import UserCard from './UserCard';
+import { Grid } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import queryKeys from '../../constants/reactQueryKeys'
+import { useGetSentFriendRequests } from '../../hooks/friendRequestsHooks'
+import { useGetUsersById } from '../../hooks/usersHooks'
+import UserCard from './UserCard'
 
 const SentRequests = () => {
-	const { data: sentFriendRequests } = useGetSentFriendRequests();
+	const { data: sentFriendRequests } = useGetSentFriendRequests()
 
 	const { data: friendRequestReceivers } = useGetUsersById(
 		sentFriendRequests?.map((request) => request.recipient),
 		queryKeys.friendRequestReceivers
-	);
+	)
 
-	if (!sentFriendRequests || !sentFriendRequests.length) return null;
+	if (!sentFriendRequests || !sentFriendRequests.length) return null
 
 	return (
 		<>
@@ -29,12 +29,15 @@ const SentRequests = () => {
 			>
 				{friendRequestReceivers?.map((friendRequestReceivers) => (
 					<Grid item key={friendRequestReceivers.id}>
-						<UserCard cardType='sent-request' user={friendRequestReceivers} />
+						<UserCard
+							cardType='sent-request'
+							user={friendRequestReceivers}
+						/>
 					</Grid>
 				))}
 			</Grid>
 		</>
-	);
-};
+	)
+}
 
-export default SentRequests;
+export default SentRequests

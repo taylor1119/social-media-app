@@ -1,9 +1,9 @@
-import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import LeftSection from './LeftSection';
-import MiddleSection from './MiddleSection';
-import RightSection from './RightSection';
+import AppBar from '@mui/material/AppBar'
+import Container from '@mui/material/Container'
+import Toolbar from '@mui/material/Toolbar'
+import LeftSection from './LeftSection'
+import MiddleSection from './MiddleSection'
+import RightSection from './RightSection'
 
 const TopBar = () => {
 	return (
@@ -27,6 +27,6 @@ const TopBar = () => {
 				</Toolbar>
 			</Container>
 		</AppBar>
-	);
-};
-export default TopBar;
+	)
+}
+export default TopBar

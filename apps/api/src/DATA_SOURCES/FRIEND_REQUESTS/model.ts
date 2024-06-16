@@ -1,5 +1,5 @@
-import { model, Schema } from 'mongoose';
-import { IFriendRequest } from 'shared';
+import { model, Schema } from 'mongoose'
+import { IFriendRequest } from 'shared'
 
 const friendRequestModel = new Schema<IFriendRequest>({
 	recipient: String,
@@ -8,6 +8,6 @@ const friendRequestModel = new Schema<IFriendRequest>({
 		type: String,
 		default: 'pending',
 	},
-});
+})
 
-export default model('friendRequest', friendRequestModel);
+export default model('friendRequest', friendRequestModel)

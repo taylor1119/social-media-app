@@ -1,18 +1,20 @@
-import { Avatar, Tooltip } from '@mui/material';
-import { useRecoilCallback } from 'recoil';
+import { Avatar, Tooltip } from '@mui/material'
+import { useRecoilCallback } from 'recoil'
 
 const RecoilDebugButton = () => {
 	const onClick = useRecoilCallback(
 		({ snapshot }) =>
 			async () => {
-				console.debug('Atom values:');
-				Array.from(snapshot.getNodes_UNSTABLE()).forEach(async (node) => {
-					const value = await snapshot.getPromise(node);
-					console.debug(node.key, value);
-				});
+				console.debug('Atom values:')
+				Array.from(snapshot.getNodes_UNSTABLE()).forEach(
+					async (node) => {
+						const value = await snapshot.getPromise(node)
+						console.debug(node.key, value)
+					}
+				)
 			},
 		[]
-	);
+	)
 
 	return (
 		<Tooltip title='Print current snapshot to console'>
@@ -29,7 +31,7 @@ const RecoilDebugButton = () => {
 				onClick={onClick}
 			/>
 		</Tooltip>
-	);
-};
+	)
+}
 
-export default RecoilDebugButton;
+export default RecoilDebugButton

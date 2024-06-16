@@ -1,61 +1,61 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup'
 import {
 	FormControl,
 	FormHelperText,
 	OutlinedInput,
 	Paper,
 	Stack,
-} from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
-import { IPost, IPostComment, TPostCommentInput } from 'shared';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { object, string } from 'yup';
+} from '@mui/material'
+import Avatar from '@mui/material/Avatar'
+import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import { IPost, IPostComment, TPostCommentInput } from 'shared'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useRecoilValue } from 'recoil'
+import { object, string } from 'yup'
 import {
 	useDeletePostComment,
 	useUpdatePostComment,
-} from '../../hooks/postCommentsHooks';
-import useGetPostComments from '../../hooks/usePostComments';
-import { currentUserState } from '../../recoil/atoms';
+} from '../../hooks/postCommentsHooks'
+import useGetPostComments from '../../hooks/usePostComments'
+import { currentUserState } from '../../recoil/atoms'
 
 const CommentText = styled(Paper)(({ theme }) => ({
 	backgroundColor: theme.palette.mode === 'dark' ? '#383838' : '#f0f2f5',
 	borderRadius: '16px',
-}));
+}))
 
 const PostComment = ({ postComment }: { postComment: IPostComment }) => {
-	const currentUser = useRecoilValue(currentUserState);
-	const [edit, setEdit] = useState(false);
-	const handleEnableEdit = () => setEdit(true);
-	const handleDisableEdit = () => setEdit(false);
+	const currentUser = useRecoilValue(currentUserState)
+	const [edit, setEdit] = useState(false)
+	const handleEnableEdit = () => setEdit(true)
+	const handleDisableEdit = () => setEdit(false)
 
 	const { register, handleSubmit } = useForm<TPostCommentInput>({
 		resolver: yupResolver(object({ text: string().required() })),
 		defaultValues: { text: postComment.text },
-	});
+	})
 
 	const { mutate: updatePostComment } = useUpdatePostComment(
 		postComment.id,
 		postComment.postId
-	);
+	)
 	const { mutate: deletePostComment } = useDeletePostComment(
 		postComment.id,
 		postComment.postId
-	);
+	)
 
 	const handleUpdateComment = handleSubmit((postCommentInput) => {
-		updatePostComment(postCommentInput);
-		setEdit(false);
-	});
+		updatePostComment(postCommentInput)
+		setEdit(false)
+	})
 	const handleDeleteComment = () => {
-		if (postComment.id.includes('placeholder-new-post-comment-id')) return;
-		deletePostComment();
-	};
+		if (postComment.id.includes('placeholder-new-post-comment-id')) return
+		deletePostComment()
+	}
 
-	const isCurrentUserAuthor = postComment.author.id === currentUser?.id;
+	const isCurrentUserAuthor = postComment.author.id === currentUser?.id
 
 	return (
 		<Stack
@@ -71,7 +71,10 @@ const PostComment = ({ postComment }: { postComment: IPostComment }) => {
 				/>
 				{edit ? (
 					<FormControl fullWidth variant='outlined'>
-						<OutlinedInput {...register('text')} id='post-comment' />
+						<OutlinedInput
+							{...register('text')}
+							id='post-comment'
+						/>
 						<FormHelperText id='post-comment'>
 							{/*TODO add error messages */}
 						</FormHelperText>
@@ -83,7 +86,12 @@ const PostComment = ({ postComment }: { postComment: IPostComment }) => {
 				)}
 			</Stack>
 			{isCurrentUserAuthor && (
-				<Stack direction='row' spacing={2} alignSelf='self-end' pr='16px'>
+				<Stack
+					direction='row'
+					spacing={2}
+					alignSelf='self-end'
+					pr='16px'
+				>
 					<Typography
 						fontWeight='500'
 						fontSize='0.85rem'
@@ -104,11 +112,11 @@ const PostComment = ({ postComment }: { postComment: IPostComment }) => {
 				</Stack>
 			)}
 		</Stack>
-	);
-};
+	)
+}
 
 const PostComments = ({ post }: { post: IPost }) => {
-	const { data: comments } = useGetPostComments(post.comments, true, post.id);
+	const { data: comments } = useGetPostComments(post.comments, true, post.id)
 
 	return (
 		<>
@@ -116,7 +124,7 @@ const PostComments = ({ post }: { post: IPost }) => {
 				<PostComment key={comment.id} postComment={comment} />
 			))}
 		</>
-	);
-};
+	)
+}
 
-export default PostComments;
+export default PostComments

@@ -1,12 +1,12 @@
-import { Box, Stack } from '@mui/material';
-import { Suspense } from 'react';
-import { useParams } from 'react-router-dom';
-import PostsInfiniteList from '../Posts/PostsInfiniteList';
-import PostsInfiniteListSkeleton from '../Posts/PostsInfiniteListSkeleton';
-import LeftSection from '../Profile/LeftSection';
-import UpperSection from '../Profile/UpperSection';
+import { Box, Stack } from '@mui/material'
+import { Suspense } from 'react'
+import { useParams } from 'react-router-dom'
+import PostsInfiniteList from '../Posts/PostsInfiniteList'
+import PostsInfiniteListSkeleton from '../Posts/PostsInfiniteListSkeleton'
+import LeftSection from '../Profile/LeftSection'
+import UpperSection from '../Profile/UpperSection'
 const Profile = () => {
-	const { userId } = useParams();
+	const { userId } = useParams()
 	return (
 		<Box sx={{ mt: '64px' }}>
 			<UpperSection />
@@ -23,7 +23,7 @@ const Profile = () => {
 				</Suspense>
 			</Stack>
 		</Box>
-	);
-};
+	)
+}
 
-export default Profile;
+export default Profile

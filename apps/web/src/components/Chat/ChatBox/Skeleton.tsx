@@ -1,8 +1,8 @@
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import CloseIcon from '@mui/icons-material/Close';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import RemoveIcon from '@mui/icons-material/Remove';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import CloseIcon from '@mui/icons-material/Close'
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions'
+import RemoveIcon from '@mui/icons-material/Remove'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import {
 	alpha,
 	Avatar,
@@ -14,12 +14,12 @@ import {
 	Skeleton,
 	Stack,
 	styled,
-} from '@mui/material';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import { Link as RouterLink } from 'react-router-dom';
-import { TUiUser } from '../../../common/types';
+} from '@mui/material'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import { Link as RouterLink } from 'react-router-dom'
+import { TUiUser } from '../../../common/types'
 
 const CustomInput = styled(InputBase)(({ theme }) => ({
 	position: 'relative',
@@ -33,7 +33,7 @@ const CustomInput = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
 		paddingInline: '10px',
 	},
-}));
+}))
 
 const ChatMessageSkeleton = ({ isOwn }: { isOwn: boolean }) => {
 	return isOwn ? (
@@ -66,8 +66,8 @@ const ChatMessageSkeleton = ({ isOwn }: { isOwn: boolean }) => {
 				sx={{ borderRadius: 16 }}
 			/>
 		</Stack>
-	);
-};
+	)
+}
 
 const ChatBoxSkeleton = ({ user }: { user: TUiUser }) => {
 	return (
@@ -77,7 +77,11 @@ const ChatBoxSkeleton = ({ user }: { user: TUiUser }) => {
 				height: 465,
 			}}
 		>
-			<Stack direction='row' justifyContent='space-between' alignItems='center'>
+			<Stack
+				direction='row'
+				justifyContent='space-between'
+				alignItems='center'
+			>
 				<Button
 					component={RouterLink}
 					to={'/profile/' + user.id}
@@ -97,10 +101,16 @@ const ChatBoxSkeleton = ({ user }: { user: TUiUser }) => {
 					{user.userName}
 				</Button>
 				<Stack direction='row' spacing={1} sx={{ p: '8px' }}>
-					<IconButton aria-label='close' sx={{ height: 26, width: 26 }}>
+					<IconButton
+						aria-label='close'
+						sx={{ height: 26, width: 26 }}
+					>
 						<RemoveIcon />
 					</IconButton>
-					<IconButton aria-label='minimize' sx={{ height: 26, width: 26 }}>
+					<IconButton
+						aria-label='minimize'
+						sx={{ height: 26, width: 26 }}
+					>
 						<CloseIcon />
 					</IconButton>
 				</Stack>
@@ -130,7 +140,13 @@ const ChatBoxSkeleton = ({ user }: { user: TUiUser }) => {
 						inputProps={{ 'aria-label': 'chat' }}
 						endAdornment={
 							<InputAdornment position='end'>
-								<IconButton sx={{ height: '28px', width: '28px', mr: '4px' }}>
+								<IconButton
+									sx={{
+										height: '28px',
+										width: '28px',
+										mr: '4px',
+									}}
+								>
 									<EmojiEmotionsIcon color='primary' />
 								</IconButton>
 							</InputAdornment>
@@ -142,7 +158,7 @@ const ChatBoxSkeleton = ({ user }: { user: TUiUser }) => {
 				</IconButton>
 			</CardActions>
 		</Card>
-	);
-};
+	)
+}
 
-export default ChatBoxSkeleton;
+export default ChatBoxSkeleton

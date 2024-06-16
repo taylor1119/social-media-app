@@ -1,36 +1,36 @@
-import { Error } from '@mui/icons-material';
-import { Box, Button, Paper, Stack, Typography } from '@mui/material';
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Error } from '@mui/icons-material'
+import { Box, Button, Paper, Stack, Typography } from '@mui/material'
+import { Component, ErrorInfo, ReactNode } from 'react'
 
 interface Props {
-	children?: ReactNode;
+	children?: ReactNode
 }
 
 interface State {
-	hasError: boolean;
+	hasError: boolean
 }
 
 class ErrorBoundary extends Component<Props, State> {
 	public state: State = {
 		hasError: false,
-	};
+	}
 
 	public static getDerivedStateFromError(): State {
 		// Update state so the next render will show the fallback UI.
-		return { hasError: true };
+		return { hasError: true }
 	}
 
 	public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		console.error('Uncaught error:', error, errorInfo);
+		console.error('Uncaught error:', error, errorInfo)
 	}
 
 	private handleReloadApp() {
-		window.location.reload();
+		window.location.reload()
 	}
 
 	private handleResetApp() {
-		localStorage.clear();
-		window.location.reload();
+		localStorage.clear()
+		window.location.reload()
 	}
 
 	public render() {
@@ -51,8 +51,13 @@ class ErrorBoundary extends Component<Props, State> {
 							gap: '0.5rem',
 						}}
 					>
-						<Error color='error' sx={{ height: '5rem', width: '5rem' }} />
-						<Typography variant='h4'>Sorry.. there was an error</Typography>
+						<Error
+							color='error'
+							sx={{ height: '5rem', width: '5rem' }}
+						/>
+						<Typography variant='h4'>
+							Sorry.. there was an error
+						</Typography>
 						<Stack
 							width='100%'
 							flexDirection='row'
@@ -78,11 +83,11 @@ class ErrorBoundary extends Component<Props, State> {
 						</Stack>
 					</Paper>
 				</Box>
-			);
+			)
 		}
 
-		return this.props.children;
+		return this.props.children
 	}
 }
 
-export default ErrorBoundary;
+export default ErrorBoundary

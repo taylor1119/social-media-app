@@ -8,22 +8,21 @@
 		"dev": "turbo run dev --no-cache --continue --no-daemon",
 		"debug": "turbo run debug --no-cache --continue --no-daemon",
 		"lint": "turbo run lint --no-daemon",
-		"format": "prettier --write --ignore-unknown --cache --cache-location=.prettier-cache .",
+		"format": "prettier --write --ignore-unknown --cache --cache-location=.prettiercache .",
 		"spell-check": "cspell --show-suggestions --relative --no-must-find-files --cache .",
-		"checks": "turbo lint format spell-check --no-daemon",
-		"prepare": "husky install"
+		"checks": "turbo lint format spell-check --no-daemon"
 	},
 	"devDependencies": {
-		"cspell": "^6.31.1",
-		"husky": "^8.0.3",
-		"lint-staged": "^13.2.0",
-		"prettier": "^2.8.7",
-		"turbo": "^1.8.8"
+		"cspell": "^8.8.4",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.7",
+		"prettier": "^3.3.2",
+		"turbo": "^2.0.4"
 	},
 	"lint-staged": {
 		"*": [
-			"prettier --write --ignore-unknown --cache --cache-location=.prettier-cache"
+			"prettier --write --ignore-unknown --cache --cache-location=.prettiercache"
 		]
 	},
-	"packageManager": "pnpm@8.1.0"
+	"packageManager": "pnpm@9.3.0"
 }

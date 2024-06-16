@@ -1,11 +1,11 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { RecoilRoot } from 'recoil';
-import App from './App';
-import ErrorBoundary from './components/ErrorBoundary';
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { RecoilRoot } from 'recoil'
+import App from './App'
+import ErrorBoundary from './components/ErrorBoundary'
 
 export const queryClient = new QueryClient({
 	defaultOptions: { queries: { suspense: true, useErrorBoundary: false } },
-});
+})
 
 export default function MainApp() {
 	return (
@@ -16,5 +16,5 @@ export default function MainApp() {
 				</ErrorBoundary>
 			</QueryClientProvider>
 		</RecoilRoot>
-	);
+	)
 }

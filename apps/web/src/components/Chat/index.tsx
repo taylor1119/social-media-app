@@ -1,15 +1,15 @@
-import { Stack } from '@mui/material';
-import { Suspense } from 'react';
-import { useRecoilValue } from 'recoil';
-import { chatBoxesState } from '../../recoil/atoms';
-import ChatBox from './ChatBox';
-import ChatBoxSkeleton from './ChatBox/Skeleton';
-import MinimizedChatBox from './MinimizedChatBox';
+import { Stack } from '@mui/material'
+import { Suspense } from 'react'
+import { useRecoilValue } from 'recoil'
+import { chatBoxesState } from '../../recoil/atoms'
+import ChatBox from './ChatBox'
+import ChatBoxSkeleton from './ChatBox/Skeleton'
+import MinimizedChatBox from './MinimizedChatBox'
 
 const Chat = () => {
-	const chatBox = useRecoilValue(chatBoxesState);
-	const minimized = Array.from(chatBox.minimized.values());
-	const open = Array.from(chatBox.open.values());
+	const chatBox = useRecoilValue(chatBoxesState)
+	const minimized = Array.from(chatBox.minimized.values())
+	const open = Array.from(chatBox.open.values())
 
 	return (
 		<>
@@ -23,7 +23,10 @@ const Chat = () => {
 				}}
 			>
 				{minimized.map((user) => (
-					<MinimizedChatBox key={'minimized-chat-box-' + user.id} user={user} />
+					<MinimizedChatBox
+						key={'minimized-chat-box-' + user.id}
+						user={user}
+					/>
 				))}
 			</Stack>
 			<Stack
@@ -37,13 +40,16 @@ const Chat = () => {
 				}}
 			>
 				{open.map((user) => (
-					<Suspense key={user.id} fallback={<ChatBoxSkeleton user={user} />}>
+					<Suspense
+						key={user.id}
+						fallback={<ChatBoxSkeleton user={user} />}
+					>
 						<ChatBox user={user} />
 					</Suspense>
 				))}
 			</Stack>
 		</>
-	);
-};
+	)
+}
 
-export default Chat;
+export default Chat

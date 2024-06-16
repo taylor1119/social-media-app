@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { authenticate, validateInput } from '../../common/middlewares';
+import { Router } from 'express'
+import { authenticate, validateInput } from '../../common/middlewares'
 import {
 	createPost,
 	deletePost,
@@ -9,17 +9,17 @@ import {
 	getTimelinePosts,
 	likePost,
 	updatePost,
-} from './controllers';
+} from './controllers'
 import {
 	createPostValidationSchema,
 	updatePostValidationSchema,
-} from './validation';
+} from './validation'
 
-const router = Router();
+const router = Router()
 
 //get timeline post
-router.get('/timeline/:userId', getTimelinePosts);
-router.get('/liked/:userId', getLikedPosts);
+router.get('/timeline/:userId', getTimelinePosts)
+router.get('/liked/:userId', getLikedPosts)
 
 //create post
 router.post(
@@ -27,10 +27,10 @@ router.post(
 	authenticate,
 	validateInput(createPostValidationSchema, 'postInput'),
 	createPost
-);
+)
 
 //read post
-router.get('/:postId', getPost);
+router.get('/:postId', getPost)
 
 //update post
 router.put(
@@ -38,15 +38,15 @@ router.put(
 	authenticate,
 	validateInput(updatePostValidationSchema, 'postInput'),
 	updatePost
-);
+)
 
 //delete post
-router.delete('/:postId', authenticate, deletePost);
+router.delete('/:postId', authenticate, deletePost)
 
 //like post
-router.put('/:postId/like', authenticate, likePost);
+router.put('/:postId/like', authenticate, likePost)
 
 //dislike post
-router.put('/:postId/dislike', authenticate, dislikePost);
+router.put('/:postId/dislike', authenticate, dislikePost)
 
-export default router;
+export default router

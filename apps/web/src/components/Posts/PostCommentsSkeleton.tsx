@@ -1,9 +1,9 @@
-import { Skeleton, Stack } from '@mui/material';
+import { Skeleton, Stack } from '@mui/material'
 
 const PostCommentsSkeleton = ({
 	commentsNumber,
 }: {
-	commentsNumber: number;
+	commentsNumber: number
 }) => (
 	<>
 		{[...Array(commentsNumber)].map((_, idx) => (
@@ -18,6 +18,6 @@ const PostCommentsSkeleton = ({
 			</Stack>
 		))}
 	</>
-);
+)
 
-export default PostCommentsSkeleton;
+export default PostCommentsSkeleton

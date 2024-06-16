@@ -1,13 +1,13 @@
-import FavoriteIcon from '@mui/icons-material/FavoriteRounded';
-import HomeIcon from '@mui/icons-material/HomeRounded';
-import PeopleIcon from '@mui/icons-material/PeopleRounded';
-import { Badge, IconButton, Stack } from '@mui/material';
-import { Link, useLocation } from 'react-router-dom';
-import { useGetReceivedFriendRequests } from '../../hooks/friendRequestsHooks';
+import FavoriteIcon from '@mui/icons-material/FavoriteRounded'
+import HomeIcon from '@mui/icons-material/HomeRounded'
+import PeopleIcon from '@mui/icons-material/PeopleRounded'
+import { Badge, IconButton, Stack } from '@mui/material'
+import { Link, useLocation } from 'react-router-dom'
+import { useGetReceivedFriendRequests } from '../../hooks/friendRequestsHooks'
 
 const MiddleSection = () => {
-	const { pathname } = useLocation();
-	const { data: friendRequests } = useGetReceivedFriendRequests();
+	const { pathname } = useLocation()
+	const { data: friendRequests } = useGetReceivedFriendRequests()
 	return (
 		<Stack
 			sx={{
@@ -49,6 +49,6 @@ const MiddleSection = () => {
 				</IconButton>
 			</Badge>
 		</Stack>
-	);
-};
-export default MiddleSection;
+	)
+}
+export default MiddleSection

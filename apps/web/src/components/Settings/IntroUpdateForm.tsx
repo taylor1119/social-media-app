@@ -11,8 +11,8 @@ import {
 	Select,
 	Stack,
 	Typography,
-} from '@mui/material';
-import { useUpdateUserIntro } from '../../hooks/usersHooks';
+} from '@mui/material'
+import { useUpdateUserIntro } from '../../hooks/usersHooks'
 
 const IntroUpdateForm = () => {
 	const {
@@ -22,29 +22,29 @@ const IntroUpdateForm = () => {
 		},
 		useMutationReturn: { status, isLoading },
 		onSubmit,
-	} = useUpdateUserIntro();
+	} = useUpdateUserIntro()
 
-	let singUpBtnText = 'Update Intro';
-	let singUpBtnColor: ButtonTypeMap['props']['color'] = 'primary';
+	let singUpBtnText = 'Update Intro'
+	let singUpBtnColor: ButtonTypeMap['props']['color'] = 'primary'
 
 	switch (status) {
 		case 'idle':
-			singUpBtnColor = 'primary';
-			singUpBtnText = 'Update Intro';
-			break;
+			singUpBtnColor = 'primary'
+			singUpBtnText = 'Update Intro'
+			break
 		case 'loading':
-			singUpBtnText = 'Updating...';
-			break;
+			singUpBtnText = 'Updating...'
+			break
 		case 'success':
-			singUpBtnText = 'Intro Updated';
-			singUpBtnColor = 'success';
-			break;
+			singUpBtnText = 'Intro Updated'
+			singUpBtnColor = 'success'
+			break
 		case 'error':
-			singUpBtnText = 'something went wrong';
-			singUpBtnColor = 'error';
-			break;
+			singUpBtnText = 'something went wrong'
+			singUpBtnColor = 'error'
+			break
 		default:
-			break;
+			break
 	}
 
 	return (
@@ -64,7 +64,9 @@ const IntroUpdateForm = () => {
 						multiline
 						rows={3}
 					/>
-					<FormHelperText id='bio'>{errors.bio?.message}</FormHelperText>
+					<FormHelperText id='bio'>
+						{errors.bio?.message}
+					</FormHelperText>
 				</FormControl>
 
 				<Stack direction='row' spacing={2}>
@@ -80,7 +82,9 @@ const IntroUpdateForm = () => {
 							{...register('from')}
 							disabled={isLoading}
 						/>
-						<FormHelperText id='from'>{errors.from?.message}</FormHelperText>
+						<FormHelperText id='from'>
+							{errors.from?.message}
+						</FormHelperText>
 					</FormControl>
 					<FormControl
 						variant='outlined'
@@ -100,7 +104,11 @@ const IntroUpdateForm = () => {
 					</FormControl>
 				</Stack>
 
-				<FormControl variant='outlined' error={Boolean(errors.work)} fullWidth>
+				<FormControl
+					variant='outlined'
+					error={Boolean(errors.work)}
+					fullWidth
+				>
 					<InputLabel htmlFor='work'>Work</InputLabel>
 					<OutlinedInput
 						id='work'
@@ -108,7 +116,9 @@ const IntroUpdateForm = () => {
 						{...register('work')}
 						disabled={isLoading}
 					/>
-					<FormHelperText id='work'>{errors.work?.message}</FormHelperText>
+					<FormHelperText id='work'>
+						{errors.work?.message}
+					</FormHelperText>
 				</FormControl>
 
 				<Stack direction='row' spacing={2}>
@@ -164,8 +174,12 @@ const IntroUpdateForm = () => {
 						<MenuItem value='Single'>Single</MenuItem>
 						<MenuItem value='Married'>Married</MenuItem>
 						<MenuItem value='Engaged'>Engaged</MenuItem>
-						<MenuItem value='In A Relationship'>In A Relationship</MenuItem>
-						<MenuItem value='Its Complicated'>Its Complicated</MenuItem>
+						<MenuItem value='In A Relationship'>
+							In A Relationship
+						</MenuItem>
+						<MenuItem value='Its Complicated'>
+							Its Complicated
+						</MenuItem>
 					</Select>
 					<FormHelperText id='relationshipStatus'>
 						{errors.relationshipStatus?.message?.toString()}
@@ -184,7 +198,7 @@ const IntroUpdateForm = () => {
 				</Button>
 			</Stack>
 		</Box>
-	);
-};
+	)
+}
 
-export default IntroUpdateForm;
+export default IntroUpdateForm
