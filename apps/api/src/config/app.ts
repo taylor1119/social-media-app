@@ -49,8 +49,7 @@ app.use('/static', express.static(path.join(import.meta.dirname, '../static')))
 
 const distPath = path.join(IS_PROD ? '../../' : '../../..', '/web/dist')
 app.use(express.static(path.join(import.meta.dirname, distPath)))
-app.get('/', function (req, res) {
-	console.log(IS_PROD)
+app.get('*', function (req, res) {
 	res.sendFile(path.join(import.meta.dirname, distPath, 'index.html'))
 })
 

@@ -20,7 +20,7 @@ const genPosts = async (usersDocs: TUserDocument[], postsNumber: number) => {
 					faker.number.int({ min: 1, max: 9 })
 				),
 				img: faker.image.urlLoremFlickr({
-					category: 'business',
+					category: 'nature',
 					width: 1280,
 					height: 720,
 				}),
