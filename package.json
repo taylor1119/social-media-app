@@ -2,15 +2,15 @@
 	"name": "social-media-app",
 	"private": true,
 	"scripts": {
-		"build": "turbo run build --no-daemon",
+		"build": "turbo run build",
 		"start": "pnpm --filter api start",
-		"clean": "turbo run clean --no-daemon",
-		"dev": "turbo run dev --no-cache --continue --no-daemon",
-		"debug": "turbo run debug --no-cache --continue --no-daemon",
-		"lint": "turbo run lint --no-daemon",
+		"clean": "turbo run clean",
+		"dev": "turbo run dev --no-cache --continue",
+		"debug": "turbo run debug --no-cache --continue",
+		"lint": "turbo run lint",
 		"format": "prettier --write --ignore-unknown --cache --cache-location=.prettiercache .",
 		"spell-check": "cspell --show-suggestions --relative --no-must-find-files --cache .",
-		"checks": "turbo lint format spell-check --no-daemon"
+		"checks": "turbo lint format spell-check"
 	},
 	"devDependencies": {
 		"cspell": "^8.8.4",
