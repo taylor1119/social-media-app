@@ -15,7 +15,7 @@ const LeftSection = () => {
 		<Stack direction='row' alignItems='center' spacing={1} width='300px'>
 			<Link style={{ marginBottom: '-6.4px' }} to='/'>
 				<img
-					src='./logo.png'
+					src='/logo.png'
 					alt='Logo'
 					style={{ width: '40px', height: '40px' }}
 					crossOrigin='anonymous'
