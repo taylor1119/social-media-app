@@ -26,6 +26,33 @@ importers:
 
   apps/api:
     dependencies:
+      '@types/bcryptjs':
+        specifier: ^2.4.6
+        version: 2.4.6
+      '@types/cookie-parser':
+        specifier: ^1.4.7
+        version: 1.4.7
+      '@types/cors':
+        specifier: ^2.8.17
+        version: 2.8.17
+      '@types/csurf':
+        specifier: ^1.11.5
+        version: 1.11.5
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
+      '@types/hpp':
+        specifier: ^0.2.6
+        version: 0.2.6
+      '@types/jsonwebtoken':
+        specifier: ^9.0.6
+        version: 9.0.6
+      '@types/morgan':
+        specifier: ^1.9.9
+        version: 1.9.9
+      '@types/ws':
+        specifier: ^8.5.10
+        version: 8.5.10
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -78,36 +105,9 @@ importers:
       '@faker-js/faker':
         specifier: ^8.4.1
         version: 8.4.1
-      '@types/bcryptjs':
-        specifier: ^2.4.6
-        version: 2.4.6
-      '@types/cookie-parser':
-        specifier: ^1.4.7
-        version: 1.4.7
-      '@types/cors':
-        specifier: ^2.8.17
-        version: 2.8.17
-      '@types/csurf':
-        specifier: ^1.11.5
-        version: 1.11.5
-      '@types/express':
-        specifier: ^4.17.21
-        version: 4.17.21
-      '@types/hpp':
-        specifier: ^0.2.6
-        version: 0.2.6
-      '@types/jsonwebtoken':
-        specifier: ^9.0.6
-        version: 9.0.6
-      '@types/morgan':
-        specifier: ^1.9.9
-        version: 1.9.9
       '@types/node':
         specifier: ^20.14.2
         version: 20.14.2
-      '@types/ws':
-        specifier: ^8.5.10
-        version: 8.5.10
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
