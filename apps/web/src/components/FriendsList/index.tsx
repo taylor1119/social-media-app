@@ -52,7 +52,7 @@ const FriendsList = () => {
 				},
 			}}
 		>
-			<List sx={{ mx: '8px', mt: '76px' }}>
+			<List sx={{ px: '8px', pt: '76px' }}>
 				{friends?.map((friend) => (
 					<FriendsListItem
 						key={friend.id}
