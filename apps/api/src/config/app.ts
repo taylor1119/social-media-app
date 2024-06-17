@@ -1,7 +1,6 @@
 import cookie from 'cookie-parser'
 import cors from 'cors'
 import express, { Express, RequestHandler } from 'express'
-import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import hpp from 'hpp'
 import morgan from 'morgan'
@@ -25,14 +24,14 @@ app.use(hpp())
 app.use(express.json())
 
 // Limiting each IP to 100 requests per windowMs
-if (IS_PROD) {
+/*if (IS_PROD) {
 	const limiter = rateLimit({
 		windowMs: 15 * 60 * 1000, // 15 minutes
 		max: 100,
 	})
 
 	app.use('/api', limiter)
-}
+}*/
 
 // Dev logging middleware
 if (!IS_PROD) {
